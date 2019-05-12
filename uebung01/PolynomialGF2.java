@@ -125,30 +125,41 @@ public class PolynomialGF2{
     da sonst addition nicht richtig wörked
     */
     boolean sumArray[];
+    boolean smallerArray[];
+    boolean biggerArray[];
     int lengthPoly0 = this.k_array.length;
     int lengthPoly1 = polynom.k_array.length;
     int lengthSmallArray;
     int lengthBigArray;
+    int shiftStart;
 
     if(lengthPoly0 > lengthPoly1){
       lengthSmallArray = lengthPoly1;
       lengthBigArray = lengthPoly0;
+      smallerArray = polynom.k_array;
+      biggerArray = this.k_array;
       sumArray = clone(this.k_array);
     } else {
       lengthSmallArray = lengthPoly0;
       lengthBigArray = lengthPoly1;
+      smallerArray = this.k_array;
+      biggerArray = polynom.k_array;
       sumArray = clone(polynom.k_array);
     }
 
-    for(int i = 0; i < lengthSmallArray; i++){
-      if((this.k_array[i] ^ polynom.k_array[i] ) == true){
-        sumArray[i] = true;
-      } else {
-        sumArray[i] = false;
-      }
+    shiftStart = lengthBigArray - lengthSmallArray;
+
+    for(int i = 0; i < shiftStart; i++){
+      sumArray[i] = (biggerArray[i] ^ false);
     }
 
-
+    for(int i = 0; i < lengthSmallArray; i++){
+      if((smallerArray[i] ^ biggerArray[i + shiftStart] ) == true){
+        sumArray[i + shiftStart] = true;
+      } else {
+        sumArray[i + shiftStart] = false;
+      }
+    }
 
     PolynomialGF2 sumPoly = new PolynomialGF2(sumArray);
 
