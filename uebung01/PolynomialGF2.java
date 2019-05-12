@@ -46,7 +46,7 @@ public class PolynomialGF2{
   public String toString(){
     String polyString = "Polynom" + id + ": ";
     for(int i = 0; i <= this.degree; i++){
-      polyString += this.k_array[i] + " ";
+      polyString += this.k_array[i] + "\t";
     }
     polyString += "\nDEGREE: " + this.degree + "\n" + "Hash: " + hash + "\n\n";
 
@@ -121,8 +121,7 @@ public class PolynomialGF2{
   public PolynomialGF2 plus(PolynomialGF2 polynom){
 
     /**
-    Bei addition sollte das kleinere feld mit false aufgefüllt werden,
-    da sonst addition nicht richtig wörked
+
     */
     boolean sumArray[];
     boolean smallerArray[];
@@ -179,41 +178,38 @@ public class PolynomialGF2{
     int lengthProArray;
     int countShift = 0;
     int smallerArrayLength;
+    int bigAL_minusone;
     boolean smallerArray[];
     boolean biggerArray[];
 
     if(this.k_array.length > polynom.k_array.length){
-      lengthProArray = 2*this.k_array.length-1;
       biggerArray = this.k_array;
       smallerArray = polynom.k_array;
       smallerArrayLength = smallerArray.length;
     } else {
-      lengthProArray = 2*polynom.k_array.length-1;
       biggerArray = polynom.k_array;
       smallerArray = this.k_array;
       smallerArrayLength = smallerArray.length;
     }
 
+    lengthProArray = biggerArray.length + smallerArrayLength-1;
     proArray = new boolean[lengthProArray];
 
     //ENDE ARRAY ERZEUGUNG, START BEFÜLLEN
     /**
 
-
-
     */
-
-
-    for(int i = smallerArrayLength-1; 0 <= i; i--){
-      if(smallerArray[i] == true){
-        for(int k = biggerArray.length-1; 0 <= k; k--){
-          //
-          proArray[k+i] = ( biggerArray[k] || proArray[k+i]);
+    for(int i = 0; i < smallerArrayLength; i++){
+      if(smallerArray[smallerArrayLength-1-i] == true){
+        for(int k = 0; k < biggerArray.length; k++){
+          proArray[proArray.length-i-k-1] = ( biggerArray[biggerArray.length-1-k] || proArray[proArray.length-i-k-1]);
         }
+        debugBoolArray(proArray);
       } else {
-        for(int k = biggerArray.length-1; 0 <= k; k--){
-          proArray[k+i] = (proArray[k+i] || false);
+        for(int k = 0; k < biggerArray.length; k++){
+          proArray[proArray.length-i-k-1] = (proArray[proArray.length-i-k-1] || false);
         }
+        debugBoolArray(proArray);
       }
 
     }
@@ -223,6 +219,18 @@ public class PolynomialGF2{
 
     return proPoly;
 
+  }
+
+  private void debugBoolArray(String info , boolean[] array){
+    String ausgabe = "Debug" + info +": ";
+    for(int i = 0; i < array.length; i++){
+      ausgabe += array[i] + "\t";
+    }
+    System.out.print(ausgabe + "\n");
+  }
+
+  private void debugBoolArray(boolean[] array){
+    debugBoolArray("", array);
   }
 
   private int degree(PolynomialGF2 polynom1){

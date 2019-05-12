@@ -13,8 +13,8 @@ public class PolyTest{
 
     System.out.print(poly0.toString() + poly1.toString());
     //System.out.println("Schlong:" + schlong.getHash());
-    System.out.print("Summe: " + (poly0.plus(poly1)).toString());
-    System.out.print("Produkt: " + (poly0.times(poly1)).toString());
+    System.out.print("Summe:\n" + (poly0.plus(poly1)).toString());
+    System.out.print("Produkt:\n" + (poly0.times(poly1)).toString());
 
   }
 
