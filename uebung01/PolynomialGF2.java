@@ -120,16 +120,23 @@ public class PolynomialGF2{
 
   public PolynomialGF2 plus(PolynomialGF2 polynom){
 
+    /**
+    Bei addition sollte das kleinere feld mit false aufgefüllt werden,
+    da sonst addition nicht richtig wörked
+    */
     boolean sumArray[];
     int lengthPoly0 = this.k_array.length;
     int lengthPoly1 = polynom.k_array.length;
     int lengthSmallArray;
+    int lengthBigArray;
 
     if(lengthPoly0 > lengthPoly1){
       lengthSmallArray = lengthPoly1;
+      lengthBigArray = lengthPoly0;
       sumArray = clone(this.k_array);
     } else {
       lengthSmallArray = lengthPoly0;
+      lengthBigArray = lengthPoly1;
       sumArray = clone(polynom.k_array);
     }
 
@@ -141,6 +148,8 @@ public class PolynomialGF2{
       }
     }
 
+
+
     PolynomialGF2 sumPoly = new PolynomialGF2(sumArray);
 
     return sumPoly;
@@ -150,9 +159,7 @@ public class PolynomialGF2{
   public PolynomialGF2 times(PolynomialGF2 polynom){
     /**
 
-    ICH SCHREIBE DAS ARRAY VON VORNE NACH HINTEN !!!FALSCH!!!
-    eS MUSS VON HINTEN NACH VORNE GESCHRIEBEN WERDEN
-    FICKEREI EY
+    Problem, produkt ist um 1 nach links verschoben
 
 
     */
@@ -161,28 +168,40 @@ public class PolynomialGF2{
     int lengthProArray;
     int countShift = 0;
     int smallerArrayLength;
+    boolean smallerArray[];
+    boolean biggerArray[];
 
     if(this.k_array.length > polynom.k_array.length){
-      lengthProArray = this.k_array.length*2;
-      smallerArrayLength = polynom.k_array.length;
+      lengthProArray = 2*this.k_array.length-1;
+      biggerArray = this.k_array;
+      smallerArray = polynom.k_array;
+      smallerArrayLength = smallerArray.length;
     } else {
-      lengthProArray = 2*polynom.k_array.length;
-      smallerArrayLength = this.k_array.length;
+      lengthProArray = 2*polynom.k_array.length-1;
+      biggerArray = polynom.k_array;
+      smallerArray = this.k_array;
+      smallerArrayLength = smallerArray.length;
     }
 
     proArray = new boolean[lengthProArray];
 
     //ENDE ARRAY ERZEUGUNG, START BEFÜLLEN
+    /**
+
+
+
+    */
 
 
     for(int i = smallerArrayLength-1; 0 <= i; i--){
-      if(polynom.k_array[i] == true){
-        for(int k = this.k_array.length-1; 0 <= k; k--){
-          proArray[k+i] = this.k_array[k];
+      if(smallerArray[i] == true){
+        for(int k = biggerArray.length-1; 0 <= k; k--){
+          //
+          proArray[k+i] = ( biggerArray[k] || proArray[k+i]);
         }
       } else {
-        for(int k = this.k_array.length-1; 0 <= k; k--){
-          proArray[k+i] = (this.k_array[k] || false);
+        for(int k = biggerArray.length-1; 0 <= k; k--){
+          proArray[k+i] = (proArray[k+i] || false);
         }
       }
 
