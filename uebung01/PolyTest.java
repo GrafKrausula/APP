@@ -6,14 +6,15 @@ public class PolyTest{
   public static void main(String[] args){
 
     int n = Integer.parseInt(args[0]);
-    boolean array[] = new boolean[n];
 
-    array = randArray(n);
-    PolynomialGF2 schleck = new PolynomialGF2(array);
+    PolynomialGF2 poly0 = new PolynomialGF2(randArray(n));
+    PolynomialGF2 poly1 = new PolynomialGF2(randArray(n));
     //PolynomialGF2 schlong = new PolynomialGF2(array);
 
-    System.out.println("Schleck:" + schleck.getHash());
+    System.out.print(poly0.toString() + poly1.toString());
     //System.out.println("Schlong:" + schlong.getHash());
+    System.out.print("Summe: " + (poly0.plus(poly1)).toString());
+    System.out.print("Produkt: " + (poly0.times(poly1)).toString());
 
   }
 
@@ -29,11 +30,10 @@ public class PolyTest{
       } else {
         randBool = false;
       }
-
       array[i] = randBool;
-      System.out.print(array[i] + "\t");
+    //    System.out.print(array[i] + "\t");
     }
-    System.out.print("\n");
+    //  System.out.print("\n");
     return array;
   }
 }
