@@ -168,10 +168,7 @@ public class PolynomialGF2{
 
   public PolynomialGF2 times(PolynomialGF2 polynom){
     /**
-
-    Problem, produkt ist um 1 nach links verschoben
-
-
+    
     */
 
     boolean proArray[];
