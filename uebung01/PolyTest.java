@@ -31,9 +31,9 @@ public class PolyTest{
         randBool = false;
       }
       array[i] = randBool;
-    //    System.out.print(array[i] + "\t");
+        System.out.print(array[i] + "\t");
     }
-    //  System.out.print("\n");
+      System.out.print("\n");
     return array;
   }
 }

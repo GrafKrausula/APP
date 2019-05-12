@@ -30,6 +30,7 @@ public class PolynomialGF2{
     this.id = nextID++;
     this.k_array = trim(clone(k_array));
     this.hash = hashCode(this.k_array);
+    this.degree = degree(this);
 
   }
 
@@ -56,13 +57,12 @@ public class PolynomialGF2{
     boolean trimmedArray[];
 
     if( (isZero(bigArray) == false) && (isOne(bigArray) == false) ){
-      for(int i = (bigArray.length -1); i >= 0; i--){
+      for(int i = 0; i < bigArray.length; i++){
         if(bigArray[i] == true){
-          trimmedArray = new boolean[i+1];
-          for(int k = 0; k <= i; k++){
-            trimmedArray[k] = bigArray[k];
+          trimmedArray = new boolean[bigArray.length-i];
+          for(int k = 0+i; k < bigArray.length; k++){
+            trimmedArray[k-i] = bigArray[k];
           }
-          this.degree = i;
           return trimmedArray;
         }
       }
@@ -177,11 +177,11 @@ public class PolynomialGF2{
 
     for(int i = smallerArrayLength-1; 0 <= i; i--){
       if(polynom.k_array[i] == true){
-        for(int k = this.k_array.length-1; 0 <= this.k_array.length; k--){
+        for(int k = this.k_array.length-1; 0 <= k; k--){
           proArray[k+i] = this.k_array[k];
         }
       } else {
-        for(int k = this.k_array.length-1; 0 <= this.k_array.length; k--){
+        for(int k = this.k_array.length-1; 0 <= k; k--){
           proArray[k+i] = (this.k_array[k] || false);
         }
       }
@@ -196,8 +196,8 @@ public class PolynomialGF2{
   }
 
   private int degree(PolynomialGF2 polynom1){
-
-    return polynom1.degree;
+    int degree = polynom1.k_array.length-1;
+    return degree;
   }
 
   private PolynomialGF2 shift(int k){
