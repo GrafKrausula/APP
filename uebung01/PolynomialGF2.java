@@ -168,7 +168,7 @@ public class PolynomialGF2{
 
   public PolynomialGF2 times(PolynomialGF2 polynom){
     /**
-    
+
     */
 
     boolean proArray[];
@@ -253,13 +253,50 @@ public class PolynomialGF2{
     return shiftedPoly;
   }
 
-  /*
 
   public PolynomialGF2 mod(PolynomialGF2 polynom1){
 
+    boolean sumArray[];
+    boolean smallerArray[];
+    boolean biggerArray[];
+    int lengthPoly0 = this.k_array.length;
+    int lengthPoly1 = polynom.k_array.length;
+    int lengthSmallArray;
+    int lengthBigArray;
+    int shiftStart;
+
+    if(lengthPoly0 > lengthPoly1){
+      lengthSmallArray = lengthPoly1;
+      lengthBigArray = lengthPoly0;
+      smallerArray = polynom.k_array;
+      biggerArray = this.k_array;
+      modArray = clone(this.k_array);
+    } else {
+      lengthSmallArray = lengthPoly0;
+      lengthBigArray = lengthPoly1;
+      smallerArray = this.k_array;
+      biggerArray = polynom.k_array;
+      modArray = clone(polynom.k_array);
+    }
+
+    /**
+    Load the register with zero bits.
+    Augment the message by appending W zero bits to the end of it.
+    While (more message bits)
+    Begin
+      Shift the register left by one bit, reading the next bit of the
+        augmented message into register bit position 0.
+      If (a 1 bit popped out of the register during step 3)
+        Register = Register XOR Poly.
+      End
+    The register now contains the remainder.
+    */
+
+    
 
   }
 
+  /*
   private boolean equals(boolean a, boolean b){
 
 
