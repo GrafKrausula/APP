@@ -108,7 +108,7 @@ public class PolynomialGF2{
     boolean c_array[] = new boolean[length+opt_wrte_strt];
 
     for(int k = 0; k < length; k++){
-      c_array[k+opt_wrte_strt] = k_array[k];
+      c_array[c_array.length -1 - k - opt_wrte_strt] = k_array[length-1-k];
     }
 
     return c_array;
@@ -240,7 +240,7 @@ public class PolynomialGF2{
     boolean shiftedArray[];
     shiftedArray = clone(this.k_array,k);
     for(int i = 0; i < k; i++){
-      shiftedArray[i] = false;
+      shiftedArray[shiftedArray-1-i] = false;
     }
 
     for(int i = 0; i < shiftedArray.length; i++){
@@ -292,7 +292,7 @@ public class PolynomialGF2{
     The register now contains the remainder.
     */
 
-    
+
 
   }
 
