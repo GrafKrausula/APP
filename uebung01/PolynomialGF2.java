@@ -208,12 +208,12 @@ public class PolynomialGF2{
         for(int k = 0; k < biggerArray.length; k++){
           proArray[proArray.length-i-k-1] = ( biggerArray[biggerArray.length-1-k] || proArray[proArray.length-i-k-1]);
         }
-        debugBoolArray(proArray);
+        //debugBoolArray(proArray);
       } else {
         for(int k = 0; k < biggerArray.length; k++){
           proArray[proArray.length-i-k-1] = (proArray[proArray.length-i-k-1] || false);
         }
-        debugBoolArray(proArray);
+        //debugBoolArray(proArray);
       }
 
     }
@@ -223,18 +223,6 @@ public class PolynomialGF2{
 
     return proPoly;
 
-  }
-
-  private void debugBoolArray(String info , boolean[] array){
-    String ausgabe = "Debug" + info +": ";
-    for(int i = 0; i < array.length; i++){
-      ausgabe += array[i] + "\t";
-    }
-    System.out.print(ausgabe + "\n");
-  }
-
-  private void debugBoolArray(boolean[] array){
-    debugBoolArray("", array);
   }
 
   private int degree(PolynomialGF2 polynom1){
@@ -255,7 +243,6 @@ public class PolynomialGF2{
     return shiftedPoly;
   }
 
-
   public PolynomialGF2 mod(PolynomialGF2 polynom){
 
     PolynomialGF2 divident = (this);
@@ -264,19 +251,22 @@ public class PolynomialGF2{
 
     boolean dividentArray[] = this.k_array;
     boolean divisorArray[] = polynom.k_array;
-    boolean remainder[];
+    boolean remainderArray[];
     int lengthPoly0 = this.k_array.length;
     int lengthPoly1 = polynom.k_array.length;
-    int shiftStart;
+    int shiftStart = divident.degree;
 
-    divident = divident.shift(divident.degree);
+    divident = divident.shift(divisor.degree);
+    divisor = divisor.shift(divident.degree-divisor.degree+1);
 
+    debugPoly("Dent",divident);
+    debugPoly("Sor", divisor);
+
+    remainder = divisor; //NUR ZUM COMPILEN
     return remainder;
 
 
   }
-
-
   /*
   private boolean equals(boolean a, boolean b){
 
@@ -284,7 +274,27 @@ public class PolynomialGF2{
   }
 
   */
+  private void debugBoolArray(String info , boolean[] array){
+    String ausgabe = "Debug" + info +": ";
+    for(int i = 0; i < array.length; i++){
+      ausgabe += array[i] + "\t";
+    }
+    System.out.print(ausgabe + "\n");
+  }
 
+  private void debugBoolArray(boolean[] array){
+    debugBoolArray("", array);
+  }
 
+  private void debugPoly(String info , PolynomialGF2 poly){
+    String ausgabe = "Debug" + info +": ";
+    for(int i = 0; i < poly.k_array.length; i++){
+      ausgabe += poly.k_array[i] + "\t";
+    }
+    System.out.print(ausgabe + "\n");
+  }
 
+  private void debugPoly(PolynomialGF2 poly){
+    debugPoly("", poly);
+  }
 }
