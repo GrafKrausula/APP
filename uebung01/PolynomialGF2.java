@@ -245,22 +245,44 @@ public class PolynomialGF2{
 
   public PolynomialGF2 mod(PolynomialGF2 polynom){
 
+
+    //divident : divisor
+
     PolynomialGF2 divident = (this);
     PolynomialGF2 divisor = polynom;
     PolynomialGF2 remainder;
 
+    boolean falseArray[] = {false,false};
     boolean dividentArray[] = this.k_array;
     boolean divisorArray[] = polynom.k_array;
     boolean remainderArray[];
     int lengthPoly0 = this.k_array.length;
     int lengthPoly1 = polynom.k_array.length;
-    int shiftStart = divident.degree;
+    int shiftStart = divisor.degree;
+    int i = 0;
+    String lmfao = "";
+
+    PolynomialGF2 falsePoly = new PolynomialGF2(falseArray);
 
     divident = divident.shift(divisor.degree);
     divisor = divisor.shift(divident.degree-divisor.degree);
 
-    debugPoly("Dent",divident);
-    debugPoly("Sor", divisor);
+    while(divident.degree > shiftStart){
+
+
+      debugPoly("Divident" + lmfao , divident);
+      debugPoly("Divisor " + lmfao , divisor);
+      if(divident.k_array[divident.degree+1] == true){
+      //System.out.print("Summe:\n" + (divident.plus(divisor)).toString());
+        divident = divident.plus(divisor);
+      } else {
+        divident = divident.plus(falsePoly);
+      }
+
+      divisor = divisor.shift(-1);
+      i++;
+
+    }
 
     remainder = divisor; //NUR ZUM COMPILEN
     return remainder;
@@ -268,7 +290,7 @@ public class PolynomialGF2{
 
   }
   /*
-  private boolean equals(boolean a, boolean b){
+  private boolean equals(Object poly0){
 
 
   }
@@ -287,7 +309,7 @@ public class PolynomialGF2{
   }
 
   private void debugPoly(String info , PolynomialGF2 poly){
-    String ausgabe = "Debug" + info +": ";
+    String ausgabe = "" + info +": ";
     for(int i = 0; i < poly.k_array.length; i++){
       ausgabe += poly.k_array[i] + "\t";
     }
