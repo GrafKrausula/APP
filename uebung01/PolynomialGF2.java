@@ -9,7 +9,6 @@ public class PolynomialGF2{
   private int degree;
   private int n;
   private int hash;
-  private String polynom;
   private boolean trimOn = true;
 
   final static boolean[] ZERO = null;                                     // Nullpolynom
