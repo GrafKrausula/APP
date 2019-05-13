@@ -107,8 +107,15 @@ public class PolynomialGF2{
     int length = k_array.length;
     boolean c_array[] = new boolean[length+opt_wrte_strt];
 
-    for(int k = 0; k < length; k++){
-      c_array[c_array.length -1 - k - opt_wrte_strt] = k_array[length-1-k];
+    if(opt_wrte_strt < 0){
+      for(int k = 0; k < c_array.length; k++){
+        c_array[c_array.length - 1 - k] = k_array[length-1+opt_wrte_strt-k];
+      }
+
+    } else {
+      for(int k = 0; k < length; k++){
+        c_array[c_array.length -1 - k - opt_wrte_strt] = k_array[length-1-k];
+      }
     }
 
     return c_array;
@@ -240,20 +247,15 @@ public class PolynomialGF2{
     boolean shiftedArray[];
     shiftedArray = clone(this.k_array,k);
     for(int i = 0; i < k; i++){
-      shiftedArray[shiftedArray-1-i] = false;
+      shiftedArray[shiftedArray.length-1-i] = false;
     }
-
-    for(int i = 0; i < shiftedArray.length; i++){
-      System.out.print(shiftedArray[i] + "\t");
-    }
-    System.out.print("\n");
 
     PolynomialGF2 shiftedPoly = new PolynomialGF2(shiftedArray);
 
     return shiftedPoly;
   }
 
-
+/*
   public PolynomialGF2 mod(PolynomialGF2 polynom1){
 
     boolean sumArray[];
@@ -290,12 +292,12 @@ public class PolynomialGF2{
         Register = Register XOR Poly.
       End
     The register now contains the remainder.
-    */
 
 
 
   }
 
+  */
   /*
   private boolean equals(boolean a, boolean b){
 
