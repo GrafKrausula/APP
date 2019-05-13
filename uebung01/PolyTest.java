@@ -7,7 +7,7 @@ public class PolyTest{
 
     int n = Integer.parseInt(args[0]);
 
-    PolynomialGF2 poly0 = new PolynomialGF2(randArray(n));
+    PolynomialGF2 poly0 = new PolynomialGF2(randArray(n*2));
     PolynomialGF2 poly1 = new PolynomialGF2(randArray(n));
 
     System.out.print(poly0.toString() + poly1.toString());

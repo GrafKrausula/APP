@@ -11,6 +11,7 @@ public class PolynomialGF2{
   private final String ONE = "1";
   private final String ZERO = "0";
   private String polynom;
+  private boolean trimOn = true;
 
   static int nextID = 0;
   static int updateNextID() {
@@ -28,7 +29,7 @@ public class PolynomialGF2{
   public PolynomialGF2(boolean[] k_array){
     //if k_array isZero && isOne == false mache weiter
     this.id = nextID++;
-    this.k_array = trim(clone(k_array));
+    this.k_array = clone(trim(k_array));
     this.hash = hashCode(this.k_array);
     this.degree = degree(this);
 
@@ -56,13 +57,14 @@ public class PolynomialGF2{
   private boolean[] trim(boolean[] bigArray){
     boolean trimmedArray[];
 
-    if( (isZero(bigArray) == false) && (isOne(bigArray) == false) ){
+    if( (isZero(bigArray) == false) && (isOne(bigArray) == false) && (trimOn == true) ){
       for(int i = 0; i < bigArray.length; i++){
         if(bigArray[i] == true){
           trimmedArray = new boolean[bigArray.length-i];
           for(int k = 0+i; k < bigArray.length; k++){
             trimmedArray[k-i] = bigArray[k];
           }
+          //System.out.println("-----Polynom" + this.id + " trimmed-----");
           return trimmedArray;
         }
       }
@@ -251,6 +253,7 @@ public class PolynomialGF2{
     PolynomialGF2 divident = (this);
     PolynomialGF2 divisor = polynom;
     PolynomialGF2 remainder;
+    PolynomialGF2 temp;
 
     boolean falseArray[] = {false,false};
     boolean dividentArray[] = this.k_array;
@@ -269,18 +272,19 @@ public class PolynomialGF2{
 
     while(divident.degree > shiftStart){
 
-
-      debugPoly("Divident" + lmfao , divident);
-      debugPoly("Divisor " + lmfao , divisor);
-      if(divident.k_array[divident.degree+1] == true){
+      debugPoly("Divident" + i + ":"  + lmfao + format(divisor.degree-divident.degree), divident);
+      if((divident.k_array[0] == true) && (divident.degree == divisor.degree)){
       //System.out.print("Summe:\n" + (divident.plus(divisor)).toString());
         divident = divident.plus(divisor);
+        debugPoly("Divisor " + i + ":" +lmfao, divisor);
       } else {
         divident = divident.plus(falsePoly);
+        debugPoly("Divisor " + i + ":" + lmfao + format(divisor.degree-divident.degree), falsePoly);
       }
 
       divisor = divisor.shift(-1);
       i++;
+      lmfao += " ";
 
     }
 
@@ -309,14 +313,26 @@ public class PolynomialGF2{
   }
 
   private void debugPoly(String info , PolynomialGF2 poly){
-    String ausgabe = "" + info +": ";
+    String ausgabe = "" + info;
     for(int i = 0; i < poly.k_array.length; i++){
-      ausgabe += poly.k_array[i] + "\t";
+      if( poly.k_array[i] == true){
+      ausgabe += "1";
+    } else {
+      ausgabe += "0";
+    }
     }
     System.out.print(ausgabe + "\n");
   }
 
   private void debugPoly(PolynomialGF2 poly){
     debugPoly("", poly);
+  }
+
+  private String format(int i){
+    String space = "";
+    for(int k = 0; k < i; k++){
+      space += "0";
+    }
+    return space;
   }
 }
