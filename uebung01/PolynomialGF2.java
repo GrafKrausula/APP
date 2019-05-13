@@ -2,14 +2,13 @@ import java.io.*;
 import java.lang.Math;
 public class PolynomialGF2{
 
+
   private boolean k_array[];
   //private boolean copyk_array[];
   private int id;
   private int degree;
   private int n;
   private int hash;
-  private final String ONE = "1";
-  private final String ZERO = "0";
   private String polynom;
   private boolean trimOn = true;
 
@@ -19,10 +18,8 @@ public class PolynomialGF2{
   }
 
   public PolynomialGF2(){
-    this.polynom = ONE;
     this.k_array = new boolean[1];
     this.k_array[0] = true;
-
     //Default Konstruktor der 1 zurückliefern soll
   }
 
@@ -255,7 +252,7 @@ public class PolynomialGF2{
     PolynomialGF2 remainder;
     PolynomialGF2 temp;
 
-    boolean falseArray[] = {false,false};
+    boolean falseArray[]; //= {false,false};
     boolean dividentArray[] = this.k_array;
     boolean divisorArray[] = polynom.k_array;
     boolean remainderArray[];
@@ -265,12 +262,13 @@ public class PolynomialGF2{
     int i = 0;
     String lmfao = "";
 
-    PolynomialGF2 falsePoly = new PolynomialGF2(falseArray);
-
     divident = divident.shift(divisor.degree);
     divisor = divisor.shift(divident.degree-divisor.degree);
 
-    while(divident.degree > shiftStart){
+    falseArray = new boolean[divisor.degree + 1];
+    PolynomialGF2 falsePoly = new PolynomialGF2(falseArray);
+
+    while(divident.degree >= shiftStart){
 
       debugPoly("Divident" + i + ":"  + lmfao + format(divisor.degree-divident.degree), divident);
       if((divident.k_array[0] == true) && (divident.degree == divisor.degree)){
@@ -279,10 +277,11 @@ public class PolynomialGF2{
         debugPoly("Divisor " + i + ":" +lmfao, divisor);
       } else {
         divident = divident.plus(falsePoly);
-        debugPoly("Divisor " + i + ":" + lmfao + format(divisor.degree-divident.degree), falsePoly);
+        debugPoly("Divisor " + i + ":" + lmfao, falsePoly);
       }
 
       divisor = divisor.shift(-1);
+      falsePoly = falsePoly.shift(-1);
       i++;
       lmfao += " ";
 
