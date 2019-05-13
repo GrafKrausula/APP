@@ -257,7 +257,7 @@ public class PolynomialGF2{
     int shiftStart = divident.degree;
 
     divident = divident.shift(divisor.degree);
-    divisor = divisor.shift(divident.degree-divisor.degree+1);
+    divisor = divisor.shift(divident.degree-divisor.degree);
 
     debugPoly("Dent",divident);
     debugPoly("Sor", divisor);
