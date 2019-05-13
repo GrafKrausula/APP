@@ -12,14 +12,15 @@ public class PolynomialGF2{
   private String polynom;
   private boolean trimOn = true;
 
+  final static boolean[] ZERO = null;                                     // Nullpolynom
+  final static boolean[] ONE = { true };
   static int nextID = 0;
   static int updateNextID() {
     return nextID++;
   }
 
   public PolynomialGF2(){
-    this.k_array = new boolean[1];
-    this.k_array[0] = true;
+    this.k_array = ONE;
     //Default Konstruktor der 1 zurückliefern soll
   }
 
