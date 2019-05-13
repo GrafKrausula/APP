@@ -11,7 +11,7 @@ public class PolyTest{
     PolynomialGF2 poly1 = new PolynomialGF2(randArray(n));
 
     System.out.print(poly0.toString() + poly1.toString());
-    System.out.print("ShiftPoly0:\n" + (poly0.shift(-2)).toString());
+//    System.out.print("ShiftPoly0:\n" + (poly0.shift(-2)).toString());
 
     System.out.print("Summe:\n" + (poly0.plus(poly1)).toString());
     System.out.print("Produkt:\n" + (poly0.times(poly1)).toString());
