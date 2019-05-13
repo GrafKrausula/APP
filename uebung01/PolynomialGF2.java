@@ -37,9 +37,9 @@ public class PolynomialGF2{
     return this.hash;
   }
 
-  public boolean[] toArray(boolean[] k_array){
+  public boolean[] toArray(PolynomialGF2 poly){
     //this.copyk_array = clone(this.k_array);
-    return clone(this.k_array);
+    return clone(poly.k_array);
   }
 
   public String toString(){
@@ -293,13 +293,21 @@ public class PolynomialGF2{
 
 
   }
-  /*
-  private boolean equals(Object poly0){
 
+  public boolean equals(Object obj) {                                // prüft auf gleichheit mit übergebenem Objekt
 
+    if(!(obj instanceof PolynomialGF2))return false;                // überprüfen ob obj ein Polynmon ist
+    PolynomialGF2 pl= (PolynomialGF2) obj;
+
+    if(degree(pl)!=degree(pl))return false;
+
+    boolean b[] =toArray(pl);
+    for (int i = 0; i < k_array.length; i++) {
+      if(k_array[i]!=b[i])return false;                                //falls ein wert ungleich ist sin die polynome verschieden
+    }
+    return true;
   }
 
-  */
   private void debugBoolArray(String info , boolean[] array){
     String ausgabe = "Debug" + info +": ";
     for(int i = 0; i < array.length; i++){
