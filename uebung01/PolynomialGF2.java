@@ -9,8 +9,9 @@ public class PolynomialGF2{
   private int degree;
   private int n;
   private int hash;
-  private boolean trimOn = true;
+  private boolean debug = true;
 
+  final static boolean[] FALSE = {false};
   final static boolean[] ZERO = null;                                     // Nullpolynom
   final static boolean[] ONE = { true };
   static int nextID = 0;
@@ -30,6 +31,7 @@ public class PolynomialGF2{
     this.hash = hashCode(this.k_array);
     this.degree = degree(this);
 
+
   }
 
   public int getHash(){
@@ -44,6 +46,10 @@ public class PolynomialGF2{
   public String toString(){
     String polyString = "Polynom" + id + ": ";
     for(int i = 0; i <= this.degree; i++){
+      if(this.hash == 0){
+        polyString += "false";
+        break;
+      }
       polyString += this.k_array[i] + "\t";
     }
     polyString += "\nDEGREE: " + this.degree + "\n" + "Hash: " + hash + "\n\n";
@@ -54,7 +60,7 @@ public class PolynomialGF2{
   private boolean[] trim(boolean[] bigArray){
     boolean trimmedArray[];
 
-    if( (isZero(bigArray) == false) && (isOne(bigArray) == false) && (trimOn == true) ){
+    if( (isZero(bigArray) == false) && (isOne(bigArray) == false) ){
       for(int i = 0; i < bigArray.length; i++){
         if(bigArray[i] == true){
           trimmedArray = new boolean[bigArray.length-i];
@@ -66,6 +72,7 @@ public class PolynomialGF2{
         }
       }
     }
+
     return bigArray;
 
   }
@@ -94,12 +101,20 @@ public class PolynomialGF2{
     }
   }
 
+  private boolean isZero(){
+    return isZero(this.k_array);
+  }
+
   private boolean isOne(boolean[] k_array){
     if(k_array.length == 1){
       return true;
     } else {
       return false;
     }
+  }
+
+  private boolean isOne(){
+    return isOne(this.k_array);
   }
 
   private boolean[] clone(boolean[] k_array, int opt_wrte_strt){
@@ -229,7 +244,7 @@ public class PolynomialGF2{
     return degree;
   }
 
-  private PolynomialGF2 shift(int k){
+  public PolynomialGF2 shift(int k){
 
     boolean shiftedArray[];
     shiftedArray = clone(this.k_array,k);
@@ -268,17 +283,21 @@ public class PolynomialGF2{
     falseArray = new boolean[divisor.degree + 1];
     PolynomialGF2 falsePoly = new PolynomialGF2(falseArray);
 
-    while(divident.degree >= shiftStart){
+    remainder = divisor;
 
-      debugPoly("Divident" + i + ":"  + lmfao + format(divisor.degree-divident.degree), divident);
+    while(divisor.degree != shiftStart-1){
+
+      debugPoly("Divident" + i%10 + ":"  + lmfao + format(divisor.degree-divident.degree), divident);
       if((divident.k_array[0] == true) && (divident.degree == divisor.degree)){
       //System.out.print("Summe:\n" + (divident.plus(divisor)).toString());
         divident = divident.plus(divisor);
-        debugPoly("Divisor " + i + ":" +lmfao, divisor);
+        debugPoly("Divisor " + i%10 + ":" +lmfao, divisor);
       } else {
         divident = divident.plus(falsePoly);
-        debugPoly("Divisor " + i + ":" + lmfao, falsePoly);
+        debugPoly("Divisor " + i%10 + ":" + lmfao, falsePoly);
       }
+
+      if(divisor.k_array.length == 1) break;
 
       divisor = divisor.shift(-1);
       falsePoly = falsePoly.shift(-1);
@@ -287,7 +306,12 @@ public class PolynomialGF2{
 
     }
 
-    remainder = divisor; //NUR ZUM COMPILEN
+    remainder = divident;
+    if(remainder.hash == 0) remainder.k_array = FALSE;
+
+    debugPoly("Remaind " + i%10 + ":" + lmfao + format(divisor.degree-divident.degree), remainder);
+
+
     return remainder;
 
 
@@ -308,6 +332,7 @@ public class PolynomialGF2{
   }
 
   private void debugBoolArray(String info , boolean[] array){
+    if (debug == false) return;
     String ausgabe = "Debug" + info +": ";
     for(int i = 0; i < array.length; i++){
       ausgabe += array[i] + "\t";
@@ -320,6 +345,7 @@ public class PolynomialGF2{
   }
 
   private void debugPoly(String info , PolynomialGF2 poly){
+    if ((debug == false) || (poly.isZero()) ) return;
     String ausgabe = "" + info;
     for(int i = 0; i < poly.k_array.length; i++){
       if( poly.k_array[i] == true){
