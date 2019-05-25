@@ -1,0 +1,61 @@
+<project name="uebung02" default="compile" basedir=".">
+	<property name="src.dir"   location="src"/>
+	<property name="build.dir" location="bin"/>
+	<property name="doc.dir" location="doc"/>
+	<!--property name="package1.dir" value="/app/exercise/testing"/-->
+	<property name="package.main" value="app.exercise.testing"/>
+
+	<target name="clean">
+		<delete dir="${build.dir}"/>
+	</target>
+
+	<target name="init">
+		<mkdir dir="${src.dir}"/>
+		<mkdir dir="${doc.dir}"/>
+		<mkdir dir="${build.dir}"/>
+		<!--mkdir dir="${package1.dir}"/-->
+	</target>
+
+	<target name="compile" depends="clean,init">
+		<javac
+			srcdir="${src.dir}"
+			destdir="${build.dir}"
+			includeantruntime="false"/>
+	</target>
+	<!--target name="run-rational" depends="compile">
+		<java classname="${package.main}.RationalTesting">
+			<classpath>
+			    <pathelement path="${build.dir}"/>
+			  </classpath>
+		</java>
+	</target-->
+	<target name="run-rpn" depends="compile">
+			<java classname="${package.main}.RPN">
+				<classpath>
+					<pathelement path="${build.dir}"/>
+				</classpath>
+				<arg value="1" />
+				<arg value="2" />
+				<arg value="+" />
+				<arg value="3" />
+				<arg value="/" />
+				<arg value="4" />
+				<arg value="*" />
+				<arg value="5" />
+				<arg value="6" />
+				<arg value="-" />
+				<arg value="+" />
+			</java>
+	</target>
+
+	<target name="javadoc">
+		<javadoc
+			destdir ="${doc.dir}"
+			author ="true"
+			version ="true"
+			private ="true"
+			docencoding="UTF-8">
+				<fileset dir="${src.dir}"/>
+			</javadoc>
+	</target>
+</project>
