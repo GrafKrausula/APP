@@ -26,6 +26,7 @@ public class BSTree<E> extends java.util.AbstractCollection<E>{
       knots++;
    }
 
+   /*
    public Iterator<E> iterator(){
      return BSTreeIterator();
    }
@@ -34,6 +35,8 @@ public class BSTree<E> extends java.util.AbstractCollection<E>{
    public Object[] toArray(){
 
    }
+
+   */
 
    @Override
    public int size(){
@@ -101,6 +104,8 @@ public class BSTree<E> extends java.util.AbstractCollection<E>{
      ((findKnot((E) o.value)) == null) ? return true : return false;
    }
 
+   /*
+
    @Override
    boolean remove(E cr){
 
@@ -116,6 +121,8 @@ public class BSTree<E> extends java.util.AbstractCollection<E>{
    public String toString(){
 
    }
+
+   */
 
    @Override
    public boolean add(E e){
