@@ -5,6 +5,8 @@ import app.exercise.visualtree.Knoten;
 import java.util.AbstractCollection;
 import java.util.Iterator;
 
+//focking shit
+
 public class BSTree<E> extends java.util.AbstractCollection<E>{
 
    public int knots = 0;
@@ -85,8 +87,6 @@ public class BSTree<E> extends java.util.AbstractCollection<E>{
        }
 
      }
-
-
 
      return temp; //gibt safe den jeweiligen knoten mit value null wieder
    }
