@@ -5,7 +5,7 @@ import app.exercise.visualtree.Knoten;
 import java.util.AbstractCollection;
 import java.util.Iterator;
 
-//focking shit
+//focking shitssdsdsd
 
 public class BSTree<E> extends java.util.AbstractCollection<E>{
 
