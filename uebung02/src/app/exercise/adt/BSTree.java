@@ -22,7 +22,7 @@ public class BSTree<E> extends java.util.AbstractCollection<E>{
    BSTree(E cr){
       super();
       root = new Knoten<E>(cr);
-      current = root
+      current = root;
       knots++;
    }
 
@@ -126,9 +126,18 @@ public class BSTree<E> extends java.util.AbstractCollection<E>{
 
    @Override
    public boolean add(E e){
+     temp = new Knoten<E>;
+     dad = new Knoten<E>;
 
-     findKnot(e) = new Knoten<E>(e);
-     leftest();
+     temp = findKnot(e);
+     if (temp == null) return false;
+
+     current = new Knoten<E>(e);
+
+     dad = dad(e);
+     current.dad = dad;
+
+     leftest(); //update den linkesten knoten
      return true;
 
    }
