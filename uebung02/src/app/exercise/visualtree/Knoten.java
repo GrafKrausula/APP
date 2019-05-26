@@ -3,17 +3,20 @@ package app.exercise.visualtree;
 import app.exercise.algebra.CompRational;
 
 class Knoten<T> implements DrawableTreeElement<T>{
-    protected Knoten<T> left;
-    protected Knoten<T> right;
+    public Knoten<T> left;
+    public Knoten<T> right;
+    public Knoten<T> dad;
     T value; boolean isRot;
     static int size = 0;
 
     Knoten (){
+      this.dad = null;
       this.value = null;
       this.size = size++;
     }
 
     Knoten (T value){
+      this.dad = null;
       this.value = value;
       this.left = new Knoten ();
       this.right = new Knoten ();
@@ -21,6 +24,7 @@ class Knoten<T> implements DrawableTreeElement<T>{
     }
 
     Knoten (T value, Knoten<T> left, Knoten<T> right){
+      this.dad = null;
       this.value = value;
       this.left = left;
       this.right = right;

@@ -132,12 +132,14 @@ public class BSTree<E> extends java.util.AbstractCollection<E>{
      temp = findKnot(e);
      if (temp == null) return false;
 
-     current = new Knoten<E>(e);
+     this.current = new Knoten<E>(e);
 
      dad = dad(e);
      current.dad = dad;
 
      leftest(); //update den linkesten knoten
+     this.knots++;
+
      return true;
 
    }

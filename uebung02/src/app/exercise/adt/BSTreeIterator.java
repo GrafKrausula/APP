@@ -12,8 +12,10 @@ public class BSTreeIterator<E> implements Iterator<E>{
     BSTree<E> Tree;
 
     public BSTreeIterator(BSTree<E> Tree){
+
         this.cur = Tree.root;
         this.Tree = Tree;
+        if(this.cur == null) return;
     }
 
   /*Alle weiteren erforderlichen, nicht implementierten Methoden lösen eine
@@ -26,10 +28,10 @@ public class BSTreeIterator<E> implements Iterator<E>{
     }
 
     public E next(){
-        if (!(cur.hasNext())) return null;
+        if(!hasNext()) throw new NoSuchElementException();
         if(this.cur == Tree.root){this.cur = Tree.min; return this.cur;}
-        this.cur = Tree.findKnot(this.cur.value, 'n');
-        
+
+
         return this.cur.value;
     }
 
