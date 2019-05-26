@@ -12,14 +12,14 @@ public class PolynomialGF2Test {
                 for (int i = 0; i < 7; i++) {
                         tmp2=generator.mod(irreduz);
                         System.out.println(i+" |    "+tmp2.hashCode()+" | "+tmp2);
-                        generator=generator.shift(1);                           // generator mit sich selbst multiplitieren, in dem fall reicht shiften da e$
+                        generator=generator.times(generator);                           // generator mit sich selbst multiplitieren, in dem fall reicht shiften da e$
                 }
                 System.out.println();
                 System.out.println("============================== Test2 ============================\n");
 
                 boolean[] b2 = {true,true};                                     // x + 1
                 generator = new PolynomialGF2(b2);
-                PolynomialGF2 generatorX = generator.clone();
+                PolynomialGF2 generatorX = generator;
                 boolean[] b3 = {true,false,false,false,true,true,false,true,true};
                 irreduz = new PolynomialGF2(b3);                                // x^8 + x^4 + x^3 +x +1
 

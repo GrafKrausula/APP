@@ -75,16 +75,16 @@ public class BSTree<E> extends java.util.AbstractCollection<E>{
 
      while(temp.value != null){ //bis temp der kleinste knoten mit null ist
 
-       if(temp.value == e){
+       if(temp.value.compareTo(e) == 0){
          (qryDad == 'd') ? return dad : return null; //returnd den dad des gesuchten knotens
        }
 
-       if(temp.value > e){
+       if(temp.value.compareTo(e) == 1){
          dad = temp;
          temp = temp.right;
        }
 
-       if(temp.value < e){
+       if(temp.value.compareTo(e) == -1){
          dad = temp;
          temp = temp.left;
        }
@@ -127,7 +127,7 @@ public class BSTree<E> extends java.util.AbstractCollection<E>{
    @Override
    public boolean add(E e){
 
-     findKnot(e).value = e;
+     findKnot(e) = new Knoten<E>(e);
      leftest();
      return true;
 
