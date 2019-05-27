@@ -32,6 +32,12 @@ public class BSTree<E> extends java.util.AbstractCollection<E>{
    @Override
    public Object[] toArray(){
      Object[] A = new Object[this.size];
+     int i = 0;
+     for(Iterator<Knoten> j = this.iterator(); j.hasNext();){
+       A[i] j.next();
+       i++;
+      }
+      return A;
 
    }
 
@@ -123,6 +129,7 @@ public class BSTree<E> extends java.util.AbstractCollection<E>{
 
 
 
+
    }
 
    private void killKnot(Knoten<E> temp){
@@ -134,13 +141,21 @@ public class BSTree<E> extends java.util.AbstractCollection<E>{
 
    @Override
    public boolean containsAll(Collection<?> c){
-
+     //System.out.println("los gehts");
+      for (Iterator<?> j = c.iterator(); j.hasNext();){
+        if (! (this.contains(((Knoten) j.next()).value))) return false;
+      }
+      return true;
    }
 
 
    @Override
    public String toString(){
-
+     String out = "";
+     for(int = 0; i < this.size(); i++){
+       out += this.toArray()[i] + " ";
+     }
+     return out;
    }
 
 
