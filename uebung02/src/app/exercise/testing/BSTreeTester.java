@@ -13,7 +13,7 @@ import java.util.*;
  /**
   * Diese Klasse realisiert einen binären Suchbaum.
   */
-class BSTreeTester {
+public class BSTreeTester {
         public static void main( String[] args ) {
 
 // == 1) Manuelle Eingabe der Zahlen ===========================================
@@ -61,9 +61,9 @@ class BSTreeTester {
 // == 2) Erstellen des Primärbaums und der Sekundärbäume =======================
 
                         // Erstellen der Bäume
-                        BSTree<CompRational> bst = new BSTree();  // Primärbaum
-                        BSTree<CompRational> bst1 = new BSTree(); // Sekundärbaum 1
-                        BSTree<CompRational> bst2 = new BSTree(); // Sekundärbaum 2
+                        BSTree<CompRational> bst = new BSTree<CompRational>();  // Primärbaum
+                        BSTree<CompRational> bst1 = new BSTree<CompRational>(); // Sekundärbaum 1
+                        BSTree<CompRational> bst2 = new BSTree<CompRational>(); // Sekundärbaum 2
 
                         // Hilfsvariablen
                         CompRational first_cr = new CompRational(complist.get(0));

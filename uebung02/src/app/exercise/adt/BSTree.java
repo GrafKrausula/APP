@@ -150,7 +150,7 @@ public class BSTree<E extends Comparable<E>> extends AbstractCollection<E>{
    public String toString(){
      String out = "";
      for(int i = 0; i < this.size(); i++){
-       out += this.toArray()[i] + " ";
+       out += this.toArray()[i].toString() + " ";
      }
      return out;
    }

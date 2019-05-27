@@ -2,6 +2,7 @@
 	<property name="src.dir"   location="src"/>
 	<property name="build.dir" location="bin"/>
 	<property name="doc.dir" location="doc"/>
+	<property name="jarfile" location="."/>
 	<!--property name="package1.dir" value="/app/exercise/testing"/-->
 	<property name="package.main" value="app.exercise.testing"/>
 
