@@ -15,7 +15,7 @@ public class BSTreeIterator<E> implements Iterator<E>{
 
         this.cur = Tree.root;
         this.Tree = Tree;
-        if(this.cur == null) return;
+        //if(this.cur == null) return;
     }
 
   /*Alle weiteren erforderlichen, nicht implementierten Methoden lösen eine
@@ -23,13 +23,48 @@ public class BSTreeIterator<E> implements Iterator<E>{
     Implementieren Sie die Methode Iterator<E> iterator() in BSTree, die
     ein passendes Objekt von BSTreeIterator zurückliefert. */
 
-    public boolean hasNext(){
-
+    @Override
+    public void leftest(Knoten<E> temp){
+       while(temp.value != null){
+         this.cur=temp;
+         temp=temp.left;
+       }
     }
 
+    @Override
+    public boolean hasNext(){
+      return true;
+    }
+
+    @Override
     public E next(){
+
+        private Knoten<E> last;
+
         if(!hasNext()) throw new NoSuchElementException();
-        if(this.cur == Tree.root){this.cur = Tree.min; return this.cur;}
+        if(this.cur == Tree.root){this.cur = Tree.min; return this.cur;} //erster aufruf
+
+        last = this.cur;
+
+        while(true){
+
+          if(this.cur.left.value == null && this.cur.right.value == null){
+            if(this.cur.value.compareTo(last.value) > 0) return this.cur;
+            if(this.cur.value.compareTo(last.value) == 0) this.cur = this.cur.dad;
+          }
+
+          if(this.cur.left.value.compareTo(last.value) == 1 && this.cur.right.value != null && this.cur.right.value.compareTo(last.value) == -1){
+            this.cur = this.cur.right;
+          }
+
+
+
+        }
+
+
+
+
+        /*
 
         if(next.right != null) {
             next = next.right;
@@ -66,15 +101,16 @@ public class BSTreeIterator<E> implements Iterator<E>{
             }
             next = next.parent;
         }
-
+*/
         return this.cur.value;
     }
 
-
+    @Override
     public void forEachRemaining(Consumer<? super E> action){
       throw new UnsupportedOperationException();
     }
 
+    @Override
     public void remove(){
       throw new UnsupportedOperationException();
     }
