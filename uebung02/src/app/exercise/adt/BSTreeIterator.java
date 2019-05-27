@@ -1,11 +1,12 @@
 package app.exercise.adt;
 
-import java.util.AbstractCollection;
+import java.util.*;
 import app.exercise.adt.*;
 import app.exercise.algebra.*;
 
 
-public class BSTreeIterator<E> implements Iterator<E>{
+
+public class BSTreeIterator<E extends Comparable<E>> implements Iterator<E>{
 
     Knoten<E> cur;
     BSTree<E> Tree;
@@ -22,7 +23,6 @@ public class BSTreeIterator<E> implements Iterator<E>{
     Implementieren Sie die Methode Iterator<E> iterator() in BSTree, die
     ein passendes Objekt von BSTreeIterator zurückliefert. */
 
-    @Override
     public void leftest(Knoten<E> temp){
        while(temp.value != null){
          this.cur=temp;
@@ -50,7 +50,7 @@ public class BSTreeIterator<E> implements Iterator<E>{
         Knoten<E> last;
 
         if(!hasNext()) throw new NoSuchElementException();
-        if(this.cur == Tree.root){this.cur = Tree.min; return this.cur;} //erster aufruf
+        if(this.cur == Tree.root){this.cur = Tree.min; return this.cur.value;} //erster aufruf
 
         last = this.cur;
 
@@ -62,28 +62,21 @@ public class BSTreeIterator<E> implements Iterator<E>{
           }
 
           if((this.cur.left.value == null) && (this.cur.right.value == null)){
-            if(this.cur.value.compareTo(last.value) > 0) return this.cur;
+            if(this.cur.value.compareTo(last.value) > 0) return this.cur.value;
             if(this.cur.value.compareTo(last.value) <= 0){
                this.cur = this.cur.dad;
-               return this.cur;
+               return this.cur.value;
             }
           }
 
           while((this.cur.value.compareTo(last.value) <= 0) && (this.cur.right.value == null)){
             this.cur = this.cur.dad;
-            if(this.cur.value.compareTo(last.value) > 0) return this.cur;
+            if(this.cur.value.compareTo(last.value) > 0) return this.cur.value;
           }
 
 
         }
 
-        return null;
-
-    }
-
-    @Override
-    public void forEachRemaining(Consumer<? super E> action){
-      throw new UnsupportedOperationException();
     }
 
     @Override

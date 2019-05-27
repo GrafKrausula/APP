@@ -1,8 +1,9 @@
-package app.exercise.visualtree;
+package app.exercise.adt;
 
 import app.exercise.algebra.CompRational;
+import app.exercise.visualtree.*;
 
-class Knoten<T> implements DrawableTreeElement<T>{
+public class Knoten< T extends Comparable<T> > implements DrawableTreeElement<T>{
     public Knoten<T> left;
     public Knoten<T> right;
     public Knoten<T> dad;
@@ -12,15 +13,13 @@ class Knoten<T> implements DrawableTreeElement<T>{
     Knoten (){
       this.dad = null;
       this.value = null;
-      this.size = size++;
     }
 
     Knoten (T value){
       this.dad = null;
       this.value = value;
-      this.left = new Knoten ();
-      this.right = new Knoten ();
-      this.size = size++;
+      this.left = new Knoten<T>();
+      this.right = new Knoten<T>();
     }
 
     Knoten (T value, Knoten<T> left, Knoten<T> right){
@@ -28,7 +27,6 @@ class Knoten<T> implements DrawableTreeElement<T>{
       this.value = value;
       this.left = left;
       this.right = right;
-      this.size = size++;
     }
 
     @Override

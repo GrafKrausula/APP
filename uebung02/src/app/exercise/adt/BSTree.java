@@ -1,13 +1,13 @@
 package app.exercise.adt;
 
 import app.exercise.algebra.CompRational;
-import app.exercise.visualtree.Knoten;
 import java.util.AbstractCollection;
-import java.util.Iterator;
+import java.util.*;
+
 
 //DELETED
 
-public class BSTree<E> extends java.util.AbstractCollection<E>{
+public class BSTree<E extends Comparable<E>> extends AbstractCollection<E>{
 
    public Knoten<E> root;
    public Knoten<E> min;
@@ -31,9 +31,9 @@ public class BSTree<E> extends java.util.AbstractCollection<E>{
 
    @Override
    public Object[] toArray(){
-     Object[] A = new Object[this.size];
+     Object[] A = new Object[this.size()];
      int i = 0;
-     for(Iterator<Knoten> j = this.iterator(); j.hasNext();){
+     for(Iterator<E> j = this.iterator(); j.hasNext();){
        A[i] = j.next();
        i++;
       }
@@ -44,7 +44,7 @@ public class BSTree<E> extends java.util.AbstractCollection<E>{
    @Override
    public int size(){
       int c = 0;
-      for(Iterator<Knoten> j = this.iterator(); j.hasNext();){
+      for(Iterator<E> j = this.iterator(); j.hasNext();){
   			j.next();
   			c++;
   		}
@@ -77,13 +77,13 @@ public class BSTree<E> extends java.util.AbstractCollection<E>{
 
    public Knoten<E> findKnot(E e, char qry){
     Knoten<E> temp = root;
-    Knoten<E> dad;
+    Knoten<E> dad = root;
 
 
      while(temp.value != null){ //bis temp der kleinste knoten mit null ist
 
        if(temp.value.compareTo(e) == 0){
-         return (qryDad == 'd') ? dad : null; //returnd den nächstgrößeren value
+         return (qry == 'd') ? dad : null; //returnd den nächstgrößeren value
        }
 
        if(temp.value.compareTo(e) == 1){
@@ -107,14 +107,12 @@ public class BSTree<E> extends java.util.AbstractCollection<E>{
    }
 
 
-   @Override
-   public boolean contains(Object o){
-     return ((findKnot((E) o.value)) == null) ? true : false;
+   public boolean contains(Knoten<E> o){
+     return ((findKnot((E) o.value) == null)) ? true : false;
    }
 
 
 
-   @Override
    boolean remove(E cr){
      Knoten<E> temp;
      temp = findKnot(cr, 'k');
@@ -127,9 +125,7 @@ public class BSTree<E> extends java.util.AbstractCollection<E>{
 
 
 
-
-
-
+      return true;
 
    }
 

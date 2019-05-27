@@ -1,4 +1,4 @@
-//package app.exercise.testing;
+package app.exercise.testing;
 
 /**
  * Klasse, zum Testen der Klasse BasisFraction und Rational.

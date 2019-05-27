@@ -15,7 +15,7 @@ public class CompRational extends Rational implements java.lang.Comparable<CompR
     }
 
     @Override
-    public int compareTo(Object o){
+    public int compareTo(CompRational o){
 
         if(!(o instanceof CompRational)) throw new NullPointerException();
         if(o == null) throw new ClassCastException();
