@@ -31,7 +31,7 @@ public class BSTreeIterator<E> implements Iterator<E>{
     }
 
     public Knoten<E> rightest(){
-       private Knoten<E> temp;
+       Knoten<E> temp;
        temp = Tree.root;
        while(temp.value != null){
          temp=temp.right;
@@ -41,13 +41,13 @@ public class BSTreeIterator<E> implements Iterator<E>{
 
     @Override
     public boolean hasNext(){
-      (rightest() != this.cur) ? return true : return false;
+      return (rightest() != this.cur) ? true : false;
     }
 
     @Override
     public E next(){
 
-        private Knoten<E> last;
+        Knoten<E> last;
 
         if(!hasNext()) throw new NoSuchElementException();
         if(this.cur == Tree.root){this.cur = Tree.min; return this.cur;} //erster aufruf

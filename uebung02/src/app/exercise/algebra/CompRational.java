@@ -24,7 +24,7 @@ public class CompRational extends Rational implements java.lang.Comparable<CompR
 
         if(this.getN() < 0) return -1;
 
-        if((this.getN() == 0) && (this.equals(o)) return 0;
+        if((this.getN() == 0) && (this.equals(o))) return 0;
 
         if(this.getN() > 0) return 1;
 
