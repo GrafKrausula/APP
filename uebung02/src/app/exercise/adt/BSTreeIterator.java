@@ -48,15 +48,23 @@ public class BSTreeIterator<E> implements Iterator<E>{
 
         while(true){
 
+          if(this.cur.right.value != null && this.cur.right.value.compareTo(last.value) == 1){
+            this.cur = this.cur.right;
+            leftest(this.cur);
+          }
+
           if(this.cur.left.value == null && this.cur.right.value == null){
             if(this.cur.value.compareTo(last.value) > 0) return this.cur;
-            if(this.cur.value.compareTo(last.value) == 0) this.cur = this.cur.dad;
+            if(this.cur.value.compareTo(last.value) <= 0){
+               this.cur = this.cur.dad;
+               return this.cur;
+            }
           }
 
-          if(this.cur.left.value.compareTo(last.value) == 1 && this.cur.right.value != null && this.cur.right.value.compareTo(last.value) == -1){
-            this.cur = this.cur.right;
+          while(this.cur.value.compareTo(last.value) <= 0){
+            this.cur = this.cur.dad;
+            if(this.cur.value.compareTo(last.value) > 0) return this.cur;
           }
-
 
 
         }
