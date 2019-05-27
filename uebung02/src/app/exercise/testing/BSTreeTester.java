@@ -10,6 +10,7 @@ import app.exercise.adt.*;
 import app.exercise.visualtree.*;
 import java.util.*;
 
+
  /**
   * Diese Klasse realisiert einen binären Suchbaum.
   */
@@ -96,7 +97,7 @@ public class BSTreeTester {
                                 sgn *= -1;
 
                                 // Aktualisieren der Anzeige
-                                visual.draw(bst.k);
+                                visual.draw(bst.current);
 
                                 scanner.nextLine(); // Warten
                         }
@@ -162,12 +163,12 @@ public class BSTreeTester {
                         scanner.nextLine();
 
                         bst.remove(first_cr);
-                        visual.draw(bst.k);
+                        visual.draw(bst.current);
                         System.out.println(first_cr + " entfernt. Press Enter!");
 
                         scanner.nextLine();
                         bst.remove(last_cr);
-                        visual.draw(bst.k);
+                        visual.draw(bst.current);
                         System.out.println(last_cr + " entfernt.");
 
 // == 7) 100 zufällige CompRationals ===========================================
@@ -182,7 +183,7 @@ public class BSTreeTester {
                                         System.out.println(cr + " ist in BSTree. Press Enter to delete!");
                                         scanner.nextLine();
                                         bst.remove(cr);
-                                        visual.draw(bst.k);
+                                        visual.draw(bst.current);
                                 }
                         }
                         System.out.println("Program finish");

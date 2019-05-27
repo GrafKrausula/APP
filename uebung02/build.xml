@@ -7,7 +7,7 @@
 	<property name="package.main" value="app.exercise.testing"/>
 
 	<target name="clean">
-		<delete dir="${build.dir}"/>
+		<delete dir="${build.dir}/app"/>
 	</target>
 
 	<target name="init">
@@ -21,9 +21,20 @@
 		<javac
 			srcdir="${src.dir}"
 			destdir="${build.dir}"
-			classpath="${jarfile}"
-			includeantruntime="false"/>
+			classpath ="${jarfile}"
+			includeantruntime="false">
+
+			<classpath>
+				<fileset dir = "${build.dir}" >
+					<include name="RedBlackTreeDrawer.jar"/>
+				</fileset>
+			</classpath>
+
+		</javac>
 	</target>
+
+
+
 	<!--target name="run-rational" depends="compile">
 		<java classname="${package.main}.RationalTesting">
 			<classpath>

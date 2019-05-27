@@ -1,5 +1,7 @@
 package app.exercise.algebra;
 
+import java.util.*;
+
 public class CompRational extends Rational implements java.lang.Comparable<CompRational>{
 
     public CompRational(){
