@@ -31,9 +31,17 @@ public class BSTreeIterator<E> implements Iterator<E>{
        }
     }
 
+    public boolean isRightest(Knoten<E> cur){
+       temp = Tree.root;
+       while(temp.value != null){
+         this.cur=temp;
+         temp=temp.left;
+       }
+    }
+
     @Override
     public boolean hasNext(){
-      return true;
+      if()
     }
 
     @Override
