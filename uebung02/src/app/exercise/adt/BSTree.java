@@ -9,7 +9,6 @@ import java.util.Iterator;
 
 public class BSTree<E> extends java.util.AbstractCollection<E>{
 
-   public int knots = 0;
    public Knoten<E> root;
    public Knoten<E> min;
    public Knoten<E> current;
@@ -23,24 +22,27 @@ public class BSTree<E> extends java.util.AbstractCollection<E>{
       super();
       root = new Knoten<E>(cr);
       current = root;
-      knots++;
    }
 
-   /*
+
    public Iterator<E> iterator(){
-     return BSTreeIterator();
+     return new BSTreeIterator(this);
    }
 
    @Override
    public Object[] toArray(){
+     Object[] A = new Object[this.size];
 
    }
 
-   */
-
    @Override
    public int size(){
-      return this.knots;
+      int c = 0;
+      for(Iterator<Knoten> j = this.iterator(); j.hasNext();){
+  			j.next();
+  			c++;
+  		}
+      return c;
    }
 
    @Override
@@ -71,12 +73,11 @@ public class BSTree<E> extends java.util.AbstractCollection<E>{
      private Knoten<E> temp = root;
      private Knoten<E> dad;
 
-     if(qry == 'n' && (e != root.value)) temp = dad(e); //
 
      while(temp.value != null){ //bis temp der kleinste knoten mit null ist
 
        if(temp.value.compareTo(e) == 0){
-         (qryDad == 'd') ? return dad : return null; //returnd den dad des gesuchten knotens
+         (qryDad == 'd') ? return dad : return null; //returnd den nächstgrößeren value
        }
 
        if(temp.value.compareTo(e) == 1){
@@ -91,7 +92,8 @@ public class BSTree<E> extends java.util.AbstractCollection<E>{
 
      }
 
-     return temp; //gibt safe den jeweiligen knoten mit value null wieder
+     (qry == 'k' && (e != root.value)) ? return temp.dad : return temp; //gibt den vater des kleinsten nullknotens
+      //gibt safe den jeweiligen knoten mit value null wieder
    }
 
    public Knoten<E> findKnot(E e){
@@ -104,11 +106,30 @@ public class BSTree<E> extends java.util.AbstractCollection<E>{
      ((findKnot((E) o.value)) == null) ? return true : return false;
    }
 
-   /*
+
 
    @Override
    boolean remove(E cr){
+     temp = new Knoten<E>;
+     temp = findKnot(cr, 'k');
 
+     if((temp.right == null) && (temp.left == null)){
+     (temp == temp.dad.right) temp.dad.right = null : temp.dad.left = null;
+     temp = new Knoten<E>();
+     }
+
+
+
+
+
+
+   }
+
+   private void killKnot(Knoten<E> temp){
+     temp.dad == null;
+     temp.value == null;
+     temp.left == null;
+     temp.right == null;
    }
 
    @Override
@@ -122,7 +143,7 @@ public class BSTree<E> extends java.util.AbstractCollection<E>{
 
    }
 
-   */
+
 
    @Override
    public boolean add(E e){
@@ -138,7 +159,6 @@ public class BSTree<E> extends java.util.AbstractCollection<E>{
      current.dad = dad;
 
      leftest(); //update den linkesten knoten
-     this.knots++;
 
      return true;
 
