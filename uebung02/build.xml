@@ -21,6 +21,7 @@
 		<javac
 			srcdir="${src.dir}"
 			destdir="${build.dir}"
+			classpath="${jarfile}"
 			includeantruntime="false"/>
 	</target>
 	<!--target name="run-rational" depends="compile">
