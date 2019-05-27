@@ -7,7 +7,7 @@ package app.exercise.testing;
 import app.exercise.algebra.Rational;
 import app.exercise.algebra.CompRational;
 
-class BasisFractionTest {
+public class BasisFractionTest {
 	/**
 	 * Gibt die Tests aus.
 	 */

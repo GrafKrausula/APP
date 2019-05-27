@@ -29,22 +29,11 @@
 			  </classpath>
 		</java>
 	</target-->
-	<target name="run-rpn" depends="compile">
-			<java classname="${package.main}.RPN">
+	<target name="run-test" depends="compile">
+			<java classname="${package.main}.BasisFractionTest">
 				<classpath>
 					<pathelement path="${build.dir}"/>
 				</classpath>
-				<arg value="1" />
-				<arg value="2" />
-				<arg value="+" />
-				<arg value="3" />
-				<arg value="/" />
-				<arg value="4" />
-				<arg value="*" />
-				<arg value="5" />
-				<arg value="6" />
-				<arg value="-" />
-				<arg value="+" />
 			</java>
 	</target>
 
