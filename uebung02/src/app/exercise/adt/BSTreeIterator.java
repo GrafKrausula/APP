@@ -61,7 +61,7 @@ public class BSTreeIterator<E> implements Iterator<E>{
             }
           }
 
-          while(this.cur.value.compareTo(last.value) <= 0){
+          while(this.cur.value.compareTo(last.value) <= 0 && this.cur.right.value == null){
             this.cur = this.cur.dad;
             if(this.cur.value.compareTo(last.value) > 0) return this.cur;
           }
