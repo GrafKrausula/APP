@@ -8,7 +8,6 @@ import app.exercise.algebra.*;
 public class BSTreeIterator<E> implements Iterator<E>{
 
     Knoten<E> cur;
-    Knoten<E> lst;
     BSTree<E> Tree;
 
     public BSTreeIterator(BSTree<E> Tree){
@@ -31,17 +30,18 @@ public class BSTreeIterator<E> implements Iterator<E>{
        }
     }
 
-    public boolean isRightest(Knoten<E> cur){
+    public Knoten<E> rightest(){
+       private Knoten<E> temp;
        temp = Tree.root;
        while(temp.value != null){
-         this.cur=temp;
-         temp=temp.left;
+         temp=temp.right;
        }
+       return temp.dad;
     }
 
     @Override
     public boolean hasNext(){
-      if()
+      (rightest() =! this.cur) ? return true : return false;
     }
 
     @Override
@@ -56,12 +56,12 @@ public class BSTreeIterator<E> implements Iterator<E>{
 
         while(true){
 
-          if(this.cur.right.value != null && this.cur.right.value.compareTo(last.value) == 1){
+          if((this.cur.right.value != null) && (this.cur.right.value.compareTo(last.value) == 1)){
             this.cur = this.cur.right;
             leftest(this.cur);
           }
 
-          if(this.cur.left.value == null && this.cur.right.value == null){
+          if((this.cur.left.value == null) && (this.cur.right.value == null)){
             if(this.cur.value.compareTo(last.value) > 0) return this.cur;
             if(this.cur.value.compareTo(last.value) <= 0){
                this.cur = this.cur.dad;
@@ -69,7 +69,7 @@ public class BSTreeIterator<E> implements Iterator<E>{
             }
           }
 
-          while(this.cur.value.compareTo(last.value) <= 0 && this.cur.right.value == null){
+          while((this.cur.value.compareTo(last.value) <= 0) && (this.cur.right.value == null)){
             this.cur = this.cur.dad;
             if(this.cur.value.compareTo(last.value) > 0) return this.cur;
           }
