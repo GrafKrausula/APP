@@ -35,41 +35,41 @@ public class CompRational extends Rational implements java.lang.Comparable<CompR
     }
 
     /**
- * Zufaellige CompRationals in gegebenen Grenzen
- * @param min untere Grenze
- * @param max obere Grenze
- */
-public void random(CompRational min, CompRational max) {
-  Random r = new Random();
-  CompRational cr = new CompRational();
+    * Zufaellige CompRationals in gegebenen Grenzen
+    * @param min untere Grenze
+    * @param max obere Grenze
+    */
+    public void random(CompRational min, CompRational max) {
+      Random r = new Random();
+      CompRational cr = new CompRational();
 
-  long n = 1;
-  long d = 1;
+      long n = 1;
+      long d = 1;
 
-  boolean kleinermax = false;
-  boolean groessermin = false;
+      boolean kleinermax = false;
+      boolean groessermin = false;
 
-  while (kleinermax == false || groessermin == false) {
-    kleinermax = false;
-    groessermin = false;
+      while (kleinermax == false || groessermin == false) {
+        kleinermax = false;
+        groessermin = false;
 
 
-    n = r.nextInt(10) + 1;
-    d = r.nextInt(10) + 1;
-    cr.setND(n, d);
+        n = r.nextInt(10) + 1;
+        d = r.nextInt(10) + 1;
+        cr.setND(n, d);
 
-    if (cr.compareTo(max) == -1)
-      kleinermax = true;
-    else
-      kleinermax = false;
+        if (cr.compareTo(max) == -1)
+          kleinermax = true;
+        else
+          kleinermax = false;
 
-    if (cr.compareTo(min) == 1)
-      groessermin = true;
-    else
-      groessermin = false;
-  }
-  this.setND(n, d);
-}
+        if (cr.compareTo(min) == 1)
+          groessermin = true;
+        else
+          groessermin = false;
+        }
+        this.setND(n, d);
+      }
 
 
 }

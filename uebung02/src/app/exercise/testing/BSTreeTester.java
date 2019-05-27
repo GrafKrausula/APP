@@ -5,7 +5,7 @@
  * @author Martin Krause
  */
 
-import app.exercise.algebra.CompRational;
+import app.exercise.algebra.*;
 import app.exercise.adt.*;
 import app.exercise.visualtree.*;
 import java.util.*;
@@ -14,7 +14,7 @@ import java.util.*;
  /**
   * Diese Klasse realisiert einen binären Suchbaum.
   */
-public class BSTreeTester {
+public class BSTreeTester{
         public static void main( String[] args ) {
 
 // == 1) Manuelle Eingabe der Zahlen ===========================================
