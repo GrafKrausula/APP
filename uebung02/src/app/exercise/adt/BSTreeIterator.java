@@ -31,6 +31,41 @@ public class BSTreeIterator<E> implements Iterator<E>{
         if(!hasNext()) throw new NoSuchElementException();
         if(this.cur == Tree.root){this.cur = Tree.min; return this.cur;}
 
+        if(next.right != null) {
+            next = next.right;
+            while (next.left != null)
+                next = next.left;
+            return r;
+        }
+
+        while(true) {
+            if(next.parent == null) {
+                next = null;
+                return r;
+            }
+            if(next.parent.left == next) {
+                next = next.parent;
+               return r;
+            }
+            next = next.parent;
+        }if(next.right != null) {
+            next = next.right;
+            while (next.left != null)
+                next = next.left;
+            return r;
+        }
+
+        while(true) {
+            if(next.parent == null) {
+                next = null;
+                return r;
+            }
+            if(next.parent.left == next) {
+                next = next.parent;
+               return r;
+            }
+            next = next.parent;
+        }
 
         return this.cur.value;
     }
