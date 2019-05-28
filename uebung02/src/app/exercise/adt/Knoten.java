@@ -1,5 +1,12 @@
 package app.exercise.adt;
 
+/**
+ * Eine Java-Klasse Knoten.
+ * Erzeugt ein Objekt Knoten
+ *
+ * @author Martin Krause
+ */
+ 
 import app.exercise.algebra.CompRational;
 import app.exercise.visualtree.*;
 

@@ -1,5 +1,11 @@
 package app.exercise.adt;
 
+/**
+ * Eine Java-Klasse BSTreeIterator.
+ *
+ * @author Martin Krause
+ */
+
 import java.util.*;
 import app.exercise.adt.*;
 import app.exercise.algebra.*;
@@ -11,6 +17,10 @@ public class BSTreeIterator<E extends Comparable<E>> implements Iterator<E>{
     Knoten<E> cur;
     BSTree<E> Tree;
 
+    /**
+     * Erzeugt ein Object BSTreeIterator, sprich einen Iterator für einen beliebigen Baum
+     */
+
     public BSTreeIterator(BSTree<E> Tree){
 
         this.cur = Tree.root;
@@ -18,10 +28,10 @@ public class BSTreeIterator<E extends Comparable<E>> implements Iterator<E>{
         //if(this.cur == null) return;
     }
 
-  /*Alle weiteren erforderlichen, nicht implementierten Methoden lösen eine
-    UnsupportedOperationException aus.
-    Implementieren Sie die Methode Iterator<E> iterator() in BSTree, die
-    ein passendes Objekt von BSTreeIterator zurückliefert. */
+  /**
+   * Ermittel und setzt Current auf den linkesten Knoten eines Baums/Unterbaums
+   * @param temp wurzel ab der gesucht werden soll
+   */
 
     public void leftest(Knoten<E> temp){
        while(temp.value != null){
@@ -30,19 +40,36 @@ public class BSTreeIterator<E extends Comparable<E>> implements Iterator<E>{
        }
     }
 
+
+    /**
+     * Ermittelt den rechtesten/also größten Knoten des Baums.
+     * @return temp.dad der rechteste Knoten des ganze Baums
+     */
+
     public Knoten<E> rightest(){
        Knoten<E> temp;
-       temp = Tree.root;
-       while(temp.value != null){
-         temp=temp.right;
+       temp = Tree.root; //suche wird ab wurzel gestartet
+       while(temp.value != null){ //er sucht bis er bei dem rechtesten Blatt angekommen ist
+         temp=temp.right; //geht rechts
        }
+       //gibt den vater aus, da blatt mit null gefüllt und der vater der letzte knoten mit wer ist
        return temp.dad;
     }
+
+    /**
+     * Ermittelt, ob der Iterator/Baum noch einen nächst(größer)en Knoten hat
+     * @return false wenn current der rechteste Knoten, true wenn nicht.
+     */
 
     @Override
     public boolean hasNext(){
       return (rightest() != this.cur) ? true : false;
     }
+
+    /**
+     *
+     * @return den nächstgrößeren wert des Baums
+     */
 
     @Override
     public E next(){
@@ -78,6 +105,11 @@ public class BSTreeIterator<E extends Comparable<E>> implements Iterator<E>{
         }
 
     }
+
+    /**
+     * Da remove nicht unterstützt werden soll,
+     * wirft es eine UnsupportedOperationException
+     */
 
     @Override
     public void remove(){

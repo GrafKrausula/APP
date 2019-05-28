@@ -1,20 +1,49 @@
 package app.exercise.algebra;
-
+/**
+ * Eine Java-Klasse CompRational.
+ *
+ * @author Martin Krause
+ */
 import java.util.*;
 
 public class CompRational extends Rational implements java.lang.Comparable<CompRational>{
 
+
+  /**
+   * Erstellt ein default comparable CompRational aus einem Object Rational
+   */
     public CompRational(){
       super();
     }
-
+  /**
+    * Erstellt ein comparable Rational aus einem Object Rational
+    * @param n Nenner,eine ganze Zahl
+    * @param d Zähler,eine ganze Zahl
+    */
     public CompRational(long n, long d){
       super(n,d);
     }
+  /**
+    * Kopiert ein CompRational
+    * @param r ein zu kopierendes comparable rational
+    */
 
     public CompRational(CompRational r){
       super(r);
     }
+
+  /**
+    * Vergleicht zwei comprationals,
+    * Dieses comprational wird immer mit einem zweiten, o,
+    * verglichen.
+    * Der vergleich wird durch subtraktion als, this-o gelöst.
+    * Führt die subraktion zu einem negativen bruch, so war o größer.
+    * Ist das ergebnis 0/0 so waren sie gleich groß
+    * wenn der resultierende bruch positiv, so war o kleiner.
+    * @param o ein zu kopierendes comparable rational
+    * @return r Ergebnis des vergleichs this mit o; -1 bei this kleiner, 0 bei gleich, 1 bei this größer
+    */
+
 
     @Override
     public int compareTo(CompRational o){

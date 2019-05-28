@@ -1,4 +1,5 @@
 package app.exercise.algebra;
+
 /**
  * Eine Java-Klasse Rational.
  *
@@ -163,7 +164,7 @@ public class Rational extends BasisFraction {
 	 * @return Ein Boolean, der bei Gleichheit true ist, sonst false.
 	 */
 	@Override
-	public boolean equals(Object o) { 
+	public boolean equals(Object o) {
 		if( ! ( o instanceof Rational ) ) {
 			return false;
 		}

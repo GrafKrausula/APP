@@ -2,6 +2,7 @@ package app.exercise.testing;
 
 /**
  * Klasse, zum Testen der Klasse BasisFraction und Rational.
+ * @author Martin Krause
  */
 
 import app.exercise.algebra.Rational;
