@@ -14,12 +14,10 @@ public class BSTree<E extends Comparable<E>> extends AbstractCollection<E>{
    public Knoten<E> current;
 
    BSTree(){
-      super();
       root = null; min = null;
    }
 
    BSTree(E cr){
-      super();
       root = new Knoten<E>(cr);
       current = root;
    }
