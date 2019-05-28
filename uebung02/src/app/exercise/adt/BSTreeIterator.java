@@ -52,7 +52,9 @@ public class BSTreeIterator<E extends Comparable<E>> implements Iterator<E>{
 
     public Knoten<E> rightest(){
        Knoten<E> temp;
+       System.out.println("rightest");
        temp = Tree.root; //suche wird ab wurzel gestartet
+       System.out.println("survived");
        while(temp.value != null){ //er sucht bis er bei dem rechtesten Blatt angekommen ist
          temp=temp.right; //geht rechts
        }

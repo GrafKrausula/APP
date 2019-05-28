@@ -9,6 +9,7 @@ package app.exercise.adt;
 import app.exercise.algebra.CompRational;
 import java.util.AbstractCollection;
 import java.util.*;
+import app.*;
 
 /**
  * E typisiert für generrischen Typ,
@@ -25,16 +26,18 @@ public class BSTree<E extends Comparable<E>> extends AbstractCollection<E>{
   /**
    * Erstellt ein BSTree Object mit der null wurzel und dem min aka leftest = null
    */
-   BSTree(){
+   public BSTree(){
       root = null; min = null;
+      System.out.println("NULL");
    }
    /**
     * Erstellt ein BSTree Object mit der null wurzel und dem min aka leftest = null
     * @param cr Ein wurzelknoten wird aus dem generic object cr erzeugt und bildet die wurzel des Baums
     */
-    BSTree(E cr){
+   public BSTree(E cr){
       root = new Knoten<E>(cr);
       current = root;
+      System.out.println("NORMAL");
    }
 
    /**
@@ -160,8 +163,10 @@ public class BSTree<E extends Comparable<E>> extends AbstractCollection<E>{
     * @return true, falls Knoten schon enthalten; false, falls knoten nicht vorhanden
     */
 
-   public boolean contains(Knoten<E> o){
-     return ((findKnot((E) o.value) == null)) ? true : false; //findKnot gibt null bei vorhandenem Knoten zurück
+   @Override
+   public boolean contains(Object o){
+     Knoten<E> saft = (Knoten<E>) o;
+     return ((findKnot((E) saft.value) == null)) ? true : false; //findKnot gibt null bei vorhandenem Knoten zurück
    }
 
    /**
@@ -174,7 +179,7 @@ public class BSTree<E extends Comparable<E>> extends AbstractCollection<E>{
      Knoten<E> temp;
      temp = findKnot(cr, 'k');
 
-     if((temp.right == null) && (temp.left == null)){
+     if((temp.right == null) && (temp.left == null)){ //fall 1, blätter sind null
        if(temp == temp.dad.right) temp.dad.right = null;
        if(temp == temp.dad.left) temp.dad.left = null;
        temp = new Knoten<E>();
@@ -182,15 +187,9 @@ public class BSTree<E extends Comparable<E>> extends AbstractCollection<E>{
 
 
 
+
       return true;
 
-   }
-
-   private void killKnot(Knoten<E> temp){
-     temp.dad = null;
-     temp.value = null;
-     temp.left = null;
-     temp.right = null;
    }
 
    /**

@@ -1,4 +1,4 @@
-<project name="uebung02" default="compile" basedir=".">
+<project name="uebung02" default="run-treetest" basedir=".">
 	<property name="src.dir"   location="src"/>
 	<property name="build.dir" location="bin"/>
 	<property name="doc.dir" location="doc"/>
@@ -17,13 +17,13 @@
 		<!--mkdir dir="${package1.dir}"/-->
 	</target>
 
-	<target name="compile" depends="clean,init">
+	<target name="compile" depends="init">
 		<javac
 			srcdir="${src.dir}"
 			destdir="${build.dir}"
 			classpath ="${jarfile}"
 			includeantruntime="false">
-
+			<compilerarg value="-Xlint:unchecked"/>
 			<classpath>
 				<fileset dir = "${build.dir}" >
 					<include name="RedBlackTreeDrawer.jar"/>
@@ -35,20 +35,40 @@
 
 
 
-	<!--target name="run-rational" depends="compile">
-		<java classname="${package.main}.RationalTesting">
+	<target name="run-treetest" depends="compile">
+		<java classname="${package.main}.BSTreeTester">
 			<classpath>
 			    <pathelement path="${build.dir}"/>
 			  </classpath>
+			  <classpath>
+				<fileset dir = "${build.dir}" >
+					<include name="RedBlackTreeDrawer.jar"/>
+				</fileset>
+			  </classpath>
+
+			  <arg value = "4"/>
+			  <arg value = "7"/>
+			  <arg value = "4"/>			  
+			  <arg value = "3"/>
+			  <arg value = "3"/>			  
+			  <arg value = "2"/>			  
+			  <arg value = "5"/>
+			  <arg value = "7"/>
+			  <arg value = "3"/>
+			  <arg value = "5"/>
+			  <arg value = "2"/>
+			  <arg value = "3"/>			  			  
 		</java>
-	</target-->
-	<target name="run-test" depends="compile">
+	</target>
+	
+	
+	<!--target name="run-test" depends="compile">
 			<java classname="${package.main}.BasisFractionTest">
 				<classpath>
 					<pathelement path="${build.dir}"/>
 				</classpath>
 			</java>
-	</target>
+	</target-->
 
 	<target name="javadoc" depends = "compile">
 		<javadoc

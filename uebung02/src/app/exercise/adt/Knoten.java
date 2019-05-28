@@ -21,7 +21,7 @@ public class Knoten< T extends Comparable<T> > implements DrawableTreeElement<T>
      * Erzeugt default Objekt und initialisiert Instanzvariablen mit null
      */
 
-    Knoten (){
+    public Knoten (){
 
     }
 
@@ -29,7 +29,7 @@ public class Knoten< T extends Comparable<T> > implements DrawableTreeElement<T>
      * Erzeugt Wurzel eines Baums oder Subbaums nur mit value
      */
 
-    Knoten (T value){
+    public Knoten (T value){
       this.dad = null;
       this.value = value;
       this.left = new Knoten<T>();
@@ -40,7 +40,7 @@ public class Knoten< T extends Comparable<T> > implements DrawableTreeElement<T>
      * Erzeugt Wurzel eines Baums oder Subbaums mit 3 parametern
      */
 
-    Knoten (T value, Knoten<T> left, Knoten<T> right){
+    public Knoten (T value, Knoten<T> left, Knoten<T> right){
       this.dad = null;
       this.value = value;
       this.left = left;
