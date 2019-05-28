@@ -144,16 +144,31 @@ public class BSTree<E extends Comparable<E>> extends AbstractCollection<E>{
      return (qry == 'k' && (e != root.value)) ? temp.dad : temp;
    }
 
+   /**
+    * Sucht das passende Blatt für im Baum womöglich neuen Wert
+    * @param e zu suchender Wert
+    * @return das passend Blatt für den einzusetzenden Wert e, oder null falls schon vorhanden
+    */
+
    public Knoten<E> findKnot(E e){
      return findKnot(e, ' ');
    }
 
+   /**
+    * Nutzt die findknot mehode um den Suchbaum durchzugehen
+    * @param o zu suchender knoten
+    * @return true, falls Knoten schon enthalten; false, falls knoten nicht vorhanden
+    */
 
    public boolean contains(Knoten<E> o){
-     return ((findKnot((E) o.value) == null)) ? true : false;
+     return ((findKnot((E) o.value) == null)) ? true : false; //findKnot gibt null bei vorhandenem Knoten zurück
    }
 
-
+   /**
+    * Methode welche einen vorhandenen Wert aus dem Suchbaum entfernt
+    * @param cr zu entfernender Wert
+    * @return false, falls nicht removed; true falls removed
+    */
 
    boolean remove(E cr){
      Knoten<E> temp;
@@ -178,6 +193,11 @@ public class BSTree<E extends Comparable<E>> extends AbstractCollection<E>{
      temp.right = null;
    }
 
+   /**
+    *
+    *
+    */
+
    @Override
    public boolean containsAll(Collection<?> c){
      //System.out.println("los gehts");
@@ -187,6 +207,10 @@ public class BSTree<E extends Comparable<E>> extends AbstractCollection<E>{
       return true;
    }
 
+   /**
+    * Methode zum erzeugen eines Strings aus toArray(this)
+    * @return den String mit den Stringdarstellungen des übergebenen Arrays
+    */
 
    @Override
    public String toString(){
@@ -197,20 +221,25 @@ public class BSTree<E extends Comparable<E>> extends AbstractCollection<E>{
      return out;
    }
 
-
+   /**
+    * Fügt einen wert dem Suchbaum hinzu
+    * @return true wenn adding erfolgreich, false wenn ein schon vorhanden
+    */
 
    @Override
    public boolean add(E e){
      Knoten<E> temp;
      Knoten<E> dad;
 
-     temp = findKnot(e);
-     if (temp == null) return false;
+     temp = findKnot(e); //sucht passendes Blatt für Wert e und setzt current darauf
+     if (temp == null) return false; //null falls vorhanden, also kein einfügen
 
-     this.current = new Knoten<E>(e);
+     this.current = new Knoten<E>(e); //ersetzt Blatt durch neuen Knoten mit wert e
 
-     dad = dad(e);
-     current.dad = dad;
+     dad = dad(e); //dad des neuen Knoten wird ermittelt
+     current.dad = dad; //und dad im neuen knoten wird auf den richtigen dad gesetzt
+
+     //Könnte errorn, weil im dad keine referenz auf den Knoten besteht
 
      leftest(); //update den linkesten knoten
 
