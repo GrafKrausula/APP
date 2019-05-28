@@ -21,11 +21,15 @@ public class BSTreeIterator<E extends Comparable<E>> implements Iterator<E>{
      * Erzeugt ein Object BSTreeIterator, sprich einen Iterator für einen beliebigen Baum
      */
 
+    public BSTreeIterator(){
+      return;
+    }
+
     public BSTreeIterator(BSTree<E> Tree){
 
+        if(this.cur == null) return;
         this.cur = Tree.root;
         this.Tree = Tree;
-        //if(this.cur == null) return;
     }
 
   /**
@@ -90,7 +94,7 @@ public class BSTreeIterator<E extends Comparable<E>> implements Iterator<E>{
           }
 
           if((this.cur.left.value == null) && (this.cur.right.value == null)){ //falls beides blätter
-            if(this.cur.value.compareTo(last.value) > 0) return this.cur.value; 
+            if(this.cur.value.compareTo(last.value) > 0) return this.cur.value;
             if(this.cur.value.compareTo(last.value) <= 0){
                this.cur = this.cur.dad;
                return this.cur.value;
