@@ -6,7 +6,7 @@ package app.exercise.adt;
  *
  * @author Martin Krause
  */
- 
+
 import app.exercise.algebra.CompRational;
 import app.exercise.visualtree.*;
 
@@ -18,8 +18,7 @@ public class Knoten< T extends Comparable<T> > implements DrawableTreeElement<T>
     static int size = 0;
 
     Knoten (){
-      this.dad = null;
-      this.value = null;
+      
     }
 
     Knoten (T value){

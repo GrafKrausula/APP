@@ -67,8 +67,9 @@ public class BSTreeIterator<E extends Comparable<E>> implements Iterator<E>{
     }
 
     /**
-     *
-     * @return den nächstgrößeren wert des Baums
+     * Bestimmt durch vergleichstruktur auf welchen wert this.current gesetzt wird.
+     * dieser Wert entspricht dann dem nächsten Wert des Iterators.
+     * @return den nächstgrößeren Wert des Baums
      */
 
     @Override
@@ -88,8 +89,8 @@ public class BSTreeIterator<E extends Comparable<E>> implements Iterator<E>{
             leftest(this.cur);
           }
 
-          if((this.cur.left.value == null) && (this.cur.right.value == null)){
-            if(this.cur.value.compareTo(last.value) > 0) return this.cur.value;
+          if((this.cur.left.value == null) && (this.cur.right.value == null)){ //falls beides blätter
+            if(this.cur.value.compareTo(last.value) > 0) return this.cur.value; 
             if(this.cur.value.compareTo(last.value) <= 0){
                this.cur = this.cur.dad;
                return this.cur.value;
@@ -100,10 +101,7 @@ public class BSTreeIterator<E extends Comparable<E>> implements Iterator<E>{
             this.cur = this.cur.dad;
             if(this.cur.value.compareTo(last.value) > 0) return this.cur.value;
           }
-
-
         }
-
     }
 
     /**
