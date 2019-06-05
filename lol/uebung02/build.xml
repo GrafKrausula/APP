@@ -1,0 +1,74 @@
+<project name="Javaprogramm" default="makeall" basedir=".">
+
+	<!-- Festlegen der Ordnerstruktur -->
+	<property name="src.dir" location="src"/>
+	<property name="build.dir" location="build"/>
+	<property name="classpath" location="app.exercise.algebra"/>
+	<property name="jarfile" location="."/>
+	
+	<!-- TYPE - definition of the classpath -->
+	<!--<classpath>
+ 		 <pathelement path="${classpath}"/>
+	</classpath>
+	-->
+	<!-- Erstellen der Ordnerstruktur -->
+	<target name="init" description="Ordnerstruktur aufbauen">
+		<mkdir dir="${build.dir}"/>
+ 	</target>
+	
+	<!-- Java-Dateien kompilieren -->
+	<target name="compile"
+			depends="init"
+			description="Kompiliert die .java-Dateien">
+		<javac srcdir="${src.dir}"
+			   destdir="${build.dir}"
+			   classpath="${jarfile}"
+			   includeantruntime="false"/>
+	</target>
+	
+	<!-- Javadoc erstellen -->
+	<target name="javadoc"
+	 		depends="compile"
+	 		description="Erstellt die Javadoc-Dokumentation">
+		<javadoc author="true"
+				 encoding="UTF-8"
+				 charset="UTF-8"
+				 docencoding="UTF-8"
+				 private="true"
+				 sourcepath="${src.dir}/"
+				 destdir="docs/api"
+				 version="true"
+				 classpath="${classpath}">
+			<fileset dir="${src.dir}"/>
+		</javadoc>
+	</target>
+	
+	<!-- Programm BSTreeTester ausführen  -->
+	
+	
+	<target name="runBSTreeTester"
+			depends="compile"
+			description=""> 
+		<java classpath="${jarfile}:${build.dir}" classname="BSTreeTester" fork="true">
+			<classpath>
+				<fileset dir="${jarfile}">
+					<include name="*.jar" />
+				</fileset>
+				<fileset dir="${build.dir}">
+					<include name="*.java" />
+				</fileset>
+			</classpath> 
+		
+		</java>
+	</target>
+	
+	
+	<target name="makeall" depends="compile,javadoc,runBSTreeTester"/>
+	
+	<!-- Generierte Dateien entfernen -->
+	<target name="clean" description="Entfernt alle generierten Dateien und Verzeichnisse">
+		<delete dir="${build.dir}"/>
+	</target>
+	
+	
+</project>
