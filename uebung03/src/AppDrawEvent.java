@@ -275,6 +275,8 @@ public class AppDrawEvent {
 		JPanel buttonPanel = new JPanel();
 		JPanel exitPanel = new JPanel();
 
+
+
 		Box buttonBox = new Box(BoxLayout.X_AXIS);
 		Box exitBox = new Box(BoxLayout.X_AXIS);
 
@@ -297,6 +299,8 @@ public class AppDrawEvent {
 		buttonBox.add(grayscaleButton);
 		buttonBox.add(patternButton);
 		exitBox.add(exitButton);
+		
+		u = new ButtonReaction.mouseclicked(1);
 
 		MouseAdapter m = new ButtonReaction(name, frame, 1);
 		originalButton.addMouseListener(m);
