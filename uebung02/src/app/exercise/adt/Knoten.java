@@ -67,6 +67,7 @@ public class Knoten< T extends Comparable<T> > implements DrawableTreeElement<T>
       return this.right;
     }
 
+
     /**
      * Methode zum abfragen ob dieses Objekt rot sei
      * @return "beliebigen boolean wert" in diesem fall false

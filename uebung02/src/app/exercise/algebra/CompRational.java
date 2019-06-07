@@ -32,36 +32,38 @@ public class CompRational extends Rational implements java.lang.Comparable<CompR
       super(r);
     }
 
-  /**
-    * Vergleicht zwei comprationals,
-    * Dieses comprational wird immer mit einem zweiten, o,
-    * verglichen.
-    * Der vergleich wird durch subtraktion als, this-o gelöst.
-    * Führt die subraktion zu einem negativen bruch, so war o größer.
-    * Ist das ergebnis 0/0 so waren sie gleich groß
-    * wenn der resultierende bruch positiv, so war o kleiner.
-    * @param o ein zu kopierendes comparable rational
-    * @return r Ergebnis des vergleichs this mit o; -1 bei this kleiner, 0 bei gleich, 1 bei this größer
-    */
+    /**
+  	 * Implementiert die Methode compareTo aus java.lang.Comparable
+  	 * @param o ein Object
+  	 * @return ein Integer, der negativ bei <, null bei == und positiv
+  	 *		   bei > ist.
+  	 */
+  	public int compareTo(CompRational o) {
+  		try {
+  			if( ! ( o instanceof CompRational ) ) {
+  				throw new ClassCastException("o is not of type CompRational");
+  			}
+
+  				long d1 = o.getD();
+  				long d2 = getD();
+  				long n1 = o.getN();
+  				long n2 = getN();
+
+  				if (d1 == d2 && n1 == n2)
+  					return 0;
+  				n1 *= d2;
+  				n2 *= d1;
+  				if ( n1 < n2 )
+  					return 1;
+  				else
+  					return -1;
 
 
-    @Override
-    public int compareTo(CompRational o){
-
-        if(!(o instanceof CompRational)) throw new NullPointerException();
-        if(o == null) throw new ClassCastException();
-
-        this.sub((Rational) o);
-
-        if(this.getN() < 0) return -1;
-
-        if((this.getN() == 0) && (this.equals(o))) return 0;
-
-        if(this.getN() > 0) return 1;
-
-        return 0;
-
-    }
+  		} catch (ClassCastException e) {
+  			System.out.println("Es ist ein Typ-Fehler aufgetreten");
+  			return 0;
+  		}
+  	}
 
     /**
     * Zufaellige CompRationals in gegebenen Grenzen

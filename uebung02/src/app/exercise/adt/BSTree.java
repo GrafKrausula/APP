@@ -22,22 +22,23 @@ public class BSTree<E extends Comparable<E>> extends AbstractCollection<E>{
    public Knoten<E> root;
    public Knoten<E> min;
    public Knoten<E> current;
+   public char h = ' ';
+   public Knoten<E> helpdad;
 
   /**
    * Erstellt ein BSTree Object mit der null wurzel und dem min aka leftest = null
    */
    public BSTree(){
       root = null; min = null;
-      System.out.println("NULL");
    }
    /**
     * Erstellt ein BSTree Object mit der null wurzel und dem min aka leftest = null
     * @param cr Ein wurzelknoten wird aus dem generic object cr erzeugt und bildet die wurzel des Baums
     */
    public BSTree(E cr){
-      root = new Knoten<E>(cr);
-      current = root;
-      System.out.println("NORMAL");
+      this.root = new Knoten<E>(cr);
+      this.current = this.root;
+      System.out.println("BAUM mit root" + cr.toString() );
    }
 
    /**
@@ -45,7 +46,8 @@ public class BSTree<E extends Comparable<E>> extends AbstractCollection<E>{
     */
 
    public Iterator<E> iterator(){
-     return new BSTreeIterator(this);
+     BSTreeIterator<E> iterator = new BSTreeIterator(this);
+     return iterator;
    }
 
    /**
@@ -73,9 +75,12 @@ public class BSTree<E extends Comparable<E>> extends AbstractCollection<E>{
    @Override
    public int size(){
       int c = 0;
+      E u;
       for(Iterator<E> j = this.iterator(); j.hasNext();){
-  			j.next();
+  			u = j.next();
   			c++;
+        System.out.println("SPIN ME RIGHT ROUND " + c + " " + u );
+        if(c > 20) break;
   		}
       return c;
    }
@@ -126,25 +131,41 @@ public class BSTree<E extends Comparable<E>> extends AbstractCollection<E>{
     Knoten<E> dad = root;
 
 
-     while(temp.value != null){ //bis temp der kleinste knoten mit null ist
-
+     while(true){ //bis temp der kleinste knoten mit null ist
        if(temp.value.compareTo(e) == 0){
          return (qry == 'd') ? dad : null; //returnd den nächstgrößeren value
        }
 
-       if(temp.value.compareTo(e) == 1){
-         dad = temp;
-         temp = temp.right;
+       if(temp.value.compareTo(e) == -1){
+
+           dad = temp;
+           temp = temp.right;
+
+         System.out.println("RechtsDAD " + dad.value);
+         System.out.println("Rechts    " + temp.value);
+         h = 'r';
+         this.helpdad = dad;
+         if(temp.value == null) return temp;
        }
 
-       if(temp.value.compareTo(e) == -1){
-         dad = temp;
-         temp = temp.left;
+       if(temp.value.compareTo(e) == 1){
+
+           dad = temp;
+           temp = temp.left;
+
+         System.out.println("LinksDAD " + dad.value);
+         System.out.println("Links    " + temp.value);
+         h = 'l';
+         this.helpdad = dad;
+         if(temp.value == null) return temp;
        }
+
 
      }
+
+
      //gibt den vater des kleinsten nullknotens oder jeweiligen knoten mit value null wieder für add
-     return (qry == 'k' && (e != root.value)) ? temp.dad : temp;
+     //return (qry == 'k' && (e != root.value)) ? temp.dad : temp;
    }
 
    /**
@@ -169,33 +190,7 @@ public class BSTree<E extends Comparable<E>> extends AbstractCollection<E>{
      return ((findKnot((E) saft.value) == null)) ? true : false; //findKnot gibt null bei vorhandenem Knoten zurück
    }
 
-   /**
-    * Methode welche einen vorhandenen Wert aus dem Suchbaum entfernt
-    * @param cr zu entfernender Wert
-    * @return false, falls nicht removed; true falls removed
-    */
 
-   boolean remove(E cr){
-     Knoten<E> temp;
-     temp = findKnot(cr, 'k');
-
-     if((temp.right == null) && (temp.left == null)){ //fall 1, blätter sind null
-       if(temp == temp.dad.right) temp.dad.right = null;
-       if(temp == temp.dad.left) temp.dad.left = null;
-       temp = new Knoten<E>();
-     }
-
-
-
-
-      return true;
-
-   }
-
-   /**
-    *
-    *
-    */
 
    @Override
    public boolean containsAll(Collection<?> c){
@@ -230,13 +225,29 @@ public class BSTree<E extends Comparable<E>> extends AbstractCollection<E>{
      Knoten<E> temp;
      Knoten<E> dad;
 
+
      temp = findKnot(e); //sucht passendes Blatt für Wert e und setzt current darauf
      if (temp == null) return false; //null falls vorhanden, also kein einfügen
 
-     this.current = new Knoten<E>(e); //ersetzt Blatt durch neuen Knoten mit wert e
+     temp = new Knoten<E>(e); //ersetzt Blatt durch neuen Knoten mit wert e
+     this.current = temp;
 
-     dad = dad(e); //dad des neuen Knoten wird ermittelt
-     current.dad = dad; //und dad im neuen knoten wird auf den richtigen dad gesetzt
+     //dad = dad(e); //dad des neuen Knoten wird ermittelt
+     this.current.dad = this.helpdad; //und dad im neuen knoten wird auf den richtigen dad gesetzt
+     if(h == 'l') this.current.dad.left = this.current;
+     if(h == 'r') this.current.dad.right = this.current;
+
+
+
+     System.out.println("-----ADD------  " + current.value.toString());
+     System.out.println("----ROOT------  " + root.value.toString() + root);
+
+     System.out.println("-----DAD------  " + this.current.dad.value + this.current.dad);
+     System.out.println("----CHILDREN-----  "  + this.current.dad.left.value + "-----" + this.current.dad.right.value);
+
+    System.out.println("--ROOT--CHILDREN--  " + root.left.value + "-----" + root.right.value);
+
+     System.out.println("::::::::::::::");
 
      //Könnte errorn, weil im dad keine referenz auf den Knoten besteht
 

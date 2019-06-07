@@ -15,6 +15,7 @@ import app.exercise.algebra.*;
 public class BSTreeIterator<E extends Comparable<E>> implements Iterator<E>{
 
     Knoten<E> cur;
+    Knoten<E> root;
     BSTree<E> Tree;
 
     /**
@@ -22,14 +23,17 @@ public class BSTreeIterator<E extends Comparable<E>> implements Iterator<E>{
      */
 
     public BSTreeIterator(){
-      return;
+
     }
 
     public BSTreeIterator(BSTree<E> Tree){
 
-        if(this.cur == null) return;
-        this.cur = Tree.root;
+        if (Tree == null) return;
         this.Tree = Tree;
+        this.cur = Tree.root;
+        this.root = Tree.root;
+        System.out.println("ITERATOR START" + this.Tree.root.value.toString());
+
     }
 
   /**
@@ -52,14 +56,15 @@ public class BSTreeIterator<E extends Comparable<E>> implements Iterator<E>{
 
     public Knoten<E> rightest(){
        Knoten<E> temp;
-       System.out.println("rightest");
+       Knoten<E> dad;
        temp = Tree.root; //suche wird ab wurzel gestartet
-       System.out.println("survived");
-       while(temp.value != null){ //er sucht bis er bei dem rechtesten Blatt angekommen ist
+       while(true){ //er sucht bis er bei dem rechtesten Blatt angekommen ist
+         dad = temp;
          temp=temp.right; //geht rechts
+         if(temp.value == null) return dad;
        }
        //gibt den vater aus, da blatt mit null gefüllt und der vater der letzte knoten mit wer ist
-       return temp.dad;
+       //return temp.dad;
     }
 
     /**
@@ -69,7 +74,7 @@ public class BSTreeIterator<E extends Comparable<E>> implements Iterator<E>{
 
     @Override
     public boolean hasNext(){
-      return (rightest() != this.cur) ? true : false;
+      return (this.cur != rightest()) ? true : false;
     }
 
     /**
@@ -79,7 +84,7 @@ public class BSTreeIterator<E extends Comparable<E>> implements Iterator<E>{
      */
 
     @Override
-    public E next(){
+/*    public E next(){
 
         Knoten<E> last;
 
@@ -108,7 +113,48 @@ public class BSTreeIterator<E extends Comparable<E>> implements Iterator<E>{
             if(this.cur.value.compareTo(last.value) > 0) return this.cur.value;
           }
         }
+    } */
+
+    public E next(){
+    Knoten<E> last;
+    int i = 0;
+
+    if(!hasNext()) throw new NoSuchElementException();
+    if(this.cur == Tree.root){this.cur = Tree.min; return this.cur.value;} //erster aufruf
+
+    last = this.cur;
+
+
+    System.out.println("CUR" + cur.value);
+    System.out.println("VALUE LEFT " + cur.left.value);
+    System.out.println("VALUE RIGHT " + cur.right.value);
+    if(cur.right.value == null) i = 1;
+    // If you can walk right, walk right, then fully left.
+    // otherwise, walk up until you come from left.
+    if(i != 1) {
+        System.out.println("right " + cur.right.value);
+        cur = cur.right;
+        while (cur.left != null){
+            if(cur.left == null) break;
+            System.out.println("left " + cur.left.value);
+            cur = cur.left;
+        }
+        return cur.value;
     }
+
+
+    while(true) {
+        if(cur.dad == null) {
+            cur = null;
+            return cur.value;
+        }
+        if(cur.dad.left == cur.dad) {
+            cur = cur.dad;
+           return cur.value;
+        }
+        cur = cur.dad;
+     }
+   }
 
     /**
      * Da remove nicht unterstützt werden soll,

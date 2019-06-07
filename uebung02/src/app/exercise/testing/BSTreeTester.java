@@ -18,20 +18,19 @@ public class BSTreeTester{
             }
         }
         BSTree komplett=new BSTree(rtnls[0]);
-        komplett.add(rtnls[1]);
-        BSTree gerade=new BSTree(rtnls[0]);
-        BSTree ungerade=new BSTree(rtnls[1]);
+        //BSTree gerade=new BSTree(rtnls[0]);
+        //BSTree ungerade=new BSTree(rtnls[1]);
         System.out.println(rtnls.length);
-        for(int i=2;i<rtnls.length;i++){
+        for(int i=1;i<rtnls.length;i++){
             komplett.add(rtnls[i]);
             if(i%2==0){
-                gerade.add(rtnls[i]);
+                //gerade.add(rtnls[i]);
             }else{
-                ungerade.add(rtnls[i]);
+                //ungerade.add(rtnls[i]);
             }
         }
         System.out.println(komplett.toString());
-        System.out.println(gerade.toString());
+        /*System.out.println(gerade.toString());
         System.out.println(ungerade.toString());
         System.out.print("Enthält sub Baum 1: ");
         System.out.println(komplett.containsAll(gerade));
@@ -40,12 +39,10 @@ public class BSTreeTester{
         System.out.print("Enthält erste Rationale Zahl: ");
         System.out.println(komplett.contains(rtnls[0]));
         System.out.print("Enthält letzte Rationale Zahl: ");
-        System.out.println(komplett.contains(rtnls[rtnls.length-1]));
+        System.out.println(komplett.contains(rtnls[rtnls.length-1])); */
 
-        komplett.remove(rtnls[0]);
-        komplett.remove(rtnls[rtnls.length-1]);
 
-            
+
 
     }
 }

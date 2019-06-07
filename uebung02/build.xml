@@ -47,21 +47,45 @@
 			  </classpath>
 
 			  <arg value = "4"/>
-			  <arg value = "7"/>
-			  <arg value = "4"/>			  
+			  <arg value = "4"/>
+
 			  <arg value = "3"/>
-			  <arg value = "3"/>			  
-			  <arg value = "2"/>			  
+			  <arg value = "7"/>
+
+			  <arg value = "1"/>
+			  <arg value = "7"/>
+
+			  <arg value = "8"/>
+			  <arg value = "7"/>
+
+			  <arg value = "4"/>
+			  <arg value = "7"/>
+
+			  <arg value = "4"/>
+			  <arg value = "7"/>
+
 			  <arg value = "5"/>
 			  <arg value = "7"/>
-			  <arg value = "3"/>
-			  <arg value = "5"/>
-			  <arg value = "2"/>
-			  <arg value = "3"/>			  			  
+
+			  <arg value = "6"/>
+			  <arg value = "7"/>
+
+				<arg value = "12"/>
+			  <arg value = "7"/>
+
+				<arg value = "10"/>
+			  <arg value = "7"/>
+
+				<arg value = "9"/>
+			  <arg value = "7"/>
+
+				<arg value = "11"/>
+				<arg value = "7"/>
+
 		</java>
 	</target>
-	
-	
+
+
 	<!--target name="run-test" depends="compile">
 			<java classname="${package.main}.BasisFractionTest">
 				<classpath>
