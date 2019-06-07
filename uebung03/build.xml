@@ -1,4 +1,4 @@
-<project name="uebung02" basedir="." default="compile">
+<project name="uebung02" basedir="." default="doc">
     <property name ="src" value = "src"/>
 
     <property name="build.dir"   value="build"/>
