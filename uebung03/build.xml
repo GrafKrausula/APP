@@ -2,7 +2,7 @@
     <property name ="src" value = "src"/>
 
     <property name="build.dir"   value="build"/>
-    <property name="classes.dir" value="${build.dir}/classes"/>  
+    <property name="classes.dir" value="${build.dir}/classes"/>
     <property name="jar.dir"     value="${build.dir}/jar"/>
     <property name="doc.dir"     value="doc"/>
 
@@ -18,11 +18,6 @@
         <jar destfile="${jar.dir}/Draw.jar" basedir="${classes.dir}">
             <manifest>
                 <attribute name="Main-Class" value="src.AppDrawEvent"/>
-            </manifest>
-        </jar>
-        <jar destfile="${jar.dir}/Cell.jar" basedir="${classes.dir}">
-        	<manifest>
-                <attribute name="Main-Class" value="src.Cellular"/>
             </manifest>
         </jar>
     </target>
