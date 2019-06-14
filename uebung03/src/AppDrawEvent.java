@@ -300,7 +300,6 @@ public class AppDrawEvent {
 		buttonBox.add(patternButton);
 		exitBox.add(exitButton);
 		
-		u = new ButtonReaction.mouseclicked(1);
 
 		MouseAdapter m = new ButtonReaction(name, frame, 1);
 		originalButton.addMouseListener(m);

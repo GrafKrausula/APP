@@ -20,11 +20,11 @@ public class ROLF{
 		JPanel buttonPanel = new JPanel();
 		JPanel exitPanel = new JPanel();
 
-    Box buttonBox = new Box(BoxLayout.X_AXIS);
-    Box exitBox = new Box(BoxLayout.X_AXIS);
+    exitPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		buttonPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 
 
-    frame.pack();
+    //frame.pack(); was macht das?
     frame.setVisible(true);
   }
 }
