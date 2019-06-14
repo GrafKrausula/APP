@@ -5,6 +5,7 @@
     <property name="classes.dir" value="${build.dir}/classes"/>
     <property name="jar.dir"     value="${build.dir}/jar"/>
     <property name="doc.dir"     value="doc"/>
+    <property name="jarfile"     value="Draw"/>
 
     <target name ="compile">
     	<mkdir dir="${classes.dir}"/>
@@ -17,7 +18,7 @@
         <mkdir dir="${jar.dir}"/>
         <jar destfile="${jar.dir}/Draw.jar" basedir="${classes.dir}">
             <manifest>
-                <attribute name="Main-Class" value="src.AppDrawEvent"/>
+                <attribute name="Main-Class" value="src.ROLF"/>
             </manifest>
         </jar>
     </target>
