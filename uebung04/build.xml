@@ -1,0 +1,31 @@
+<project name="uebung02" basedir="." default="doc">
+    <property name ="src" value = "src"/>
+
+    <property name="build.dir"   value="build"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="jar.dir"     value="${build.dir}/jar"/>
+    <property name="doc.dir"     value="doc"/>
+
+    <target name ="compile">
+    	<mkdir dir="${classes.dir}"/>
+    	<javac srcdir="${src}" destdir="${classes.dir}" includeantruntime="false">
+            <compilerarg value="-Xlint:unchecked"/>
+        </javac>
+    </target>
+
+ 	<target name="jar" depends="compile">
+        <mkdir dir="${jar.dir}"/>
+        <jar destfile="${jar.dir}/Draw.jar" basedir="${classes.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="src.AppDrawEvent"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="doc" depends="compile, jar">
+    	<mkdir dir="${doc.dir}"/>
+    	<javadoc destdir="${doc.dir}" Private="true" Encoding="UTF-8" docencoding="UTF-8" charset="UTF-8" >
+    		<fileset dir="${src}"/>
+    	</javadoc>
+    </target>
+</project>
