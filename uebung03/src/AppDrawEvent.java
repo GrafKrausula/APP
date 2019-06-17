@@ -168,7 +168,7 @@ class GrayscaleImage extends OriginalImage {
 	public void paintComponent(Graphics g) {
 		if (image == null)
 			return;
-		int imageWidth = image.getWidth(this);
+	    	int imageWidth = image.getWidth(this);
         int imageHeight = image.getHeight(this);
         Color rGBColor, grayColor;
         double red, green, blue;
@@ -185,7 +185,7 @@ class GrayscaleImage extends OriginalImage {
         		grayColor = new Color(gray, gray, gray);
         		g.setColor(grayColor);
 				    g.drawRect(2*row, 2*line, 1, 1);
-				    row++;
+				     row++;
         	}
         	line++;
         }
@@ -255,7 +255,7 @@ class PatternImage extends OriginalImage {
 	    			g.setColor(Color.BLACK);
 	    			g.drawRect(row*2,line*2, 1, 1);
         		}
-				row++;
+				    row++;
         	}
         	line++;
         }
