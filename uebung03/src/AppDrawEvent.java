@@ -11,8 +11,8 @@ import java.awt.image.*;
 **/
 class AppFrame extends JFrame {
     public AppFrame(String title) {
-	super(title);
-	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	     super(title);
+	     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }
 
@@ -66,11 +66,11 @@ class ButtonReaction extends MouseAdapter {
 	* In this case, all pre-existing images in the frame are removed,
 	* then the image is drawn in the given color scheme.
 	**/
-    public void mouseClicked(MouseEvent e) {
-	if (e.getClickCount() > 0) {
-		frame.remove(originalImg);
-		frame.remove(grayscaleImg);
-		frame.remove(patternImg);
+  public void mouseClicked(MouseEvent e) {
+	  if (e.getClickCount() > 0) {
+		  frame.remove(originalImg);
+	  	frame.remove(grayscaleImg);
+	  	frame.remove(patternImg);
 	    if (colorScheme == 1)
 	    	frame.add(originalImg);
 	    if (colorScheme == 2)
@@ -87,7 +87,7 @@ class ButtonReaction extends MouseAdapter {
 **/
 class ExitButton extends MouseAdapter {
     public void mouseClicked(MouseEvent e) {
-	if (e.getClickCount() > 0)
+	    if (e.getClickCount() > 0)
 	    System.exit(0);
     }
 }
@@ -110,8 +110,8 @@ class OriginalImage extends JComponent {
 			File imageToRead = new File(name);
 			image = ImageIO.read(imageToRead);
 			int imageWidth = image.getWidth(this);
-        	int imageHeight = image.getHeight(this);
-        	setPreferredSize(new Dimension(2*imageWidth,2*imageHeight));
+      int imageHeight = image.getHeight(this);
+      setPreferredSize(new Dimension(2*imageWidth,2*imageHeight));
 		}
 		catch (IOException i){
 			System.out.println("File not found!");
@@ -125,19 +125,19 @@ class OriginalImage extends JComponent {
 		if (image == null)
 			return;
 		int imageWidth = image.getWidth(this);
-        int imageHeight = image.getHeight(this);
-        Color rGBColor;
-        int line = 0, row;
-        while (line < imageHeight){
+    int imageHeight = image.getHeight(this);
+    Color rGBColor;
+    int line = 0, row;
+    while (line < imageHeight){
         	row = 0;
         	while (row < imageWidth){
         		rGBColor = new Color (image.getRGB(row, line), true);
         		g.setColor(rGBColor);
-				g.drawRect(2*row, 2*line, 1, 1);
-				row++;
+				    g.drawRect(2*row, 2*line, 1, 1);
+				    row++;
         	}
-        	line++;
-        }
+        line++;
+    }
 	}
 	public int getWidth(){
 		return 2*image.getWidth(this);
@@ -264,7 +264,7 @@ class PatternImage extends OriginalImage {
 /**
 * Test-Class
 **/
-public class AppDrawEvent { 
+public class AppDrawEvent {
     public static void main( String[] args ) {
     	String name;
     	if (args.length == 0)
@@ -299,7 +299,7 @@ public class AppDrawEvent {
 		buttonBox.add(grayscaleButton);
 		buttonBox.add(patternButton);
 		exitBox.add(exitButton);
-		
+
 
 		MouseAdapter m = new ButtonReaction(name, frame, 1);
 		originalButton.addMouseListener(m);
