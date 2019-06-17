@@ -184,8 +184,8 @@ class GrayscaleImage extends OriginalImage {
         		gray = (int)(red+blue+green)/3;
         		grayColor = new Color(gray, gray, gray);
         		g.setColor(grayColor);
-				g.drawRect(2*row, 2*line, 1, 1);
-				row++;
+				    g.drawRect(2*row, 2*line, 1, 1);
+				    row++;
         	}
         	line++;
         }
